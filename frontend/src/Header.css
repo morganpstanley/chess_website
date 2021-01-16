@@ -1,4 +1,26 @@
 #header {
     width: 100vw;
-    text-align: center;
+    height: 3.5rem;
+    background-color: seashell;
+}
+
+#logo-image {
+    width: 4rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 4%;
+    background-color: seashell;
+    border-radius: 20%;
+    position: absolute;
+    left: 47%;
+    top: 10px;
+    padding: 1%;
+}
+
+#logo-font{
+    font-family: 'Fredoka One', cursive;
+    font-size: 1rem;
+    vertical-align: middle;
+    margin-left: 15rem;
 }

@@ -1,88 +1,131 @@
-import React, {Component} from 'react';
-import Chess from 'chess.js';
-import EvaluationBar from './EvaluationBar'
-import {Chessboard, INPUT_EVENT_TYPE, MOVE_INPUT_MODE, COLOR} from "cm-chessboard"
+import React, {useState} from 'react';
+import Chessground from 'react-chessground'
+import 'react-chessground/dist/styles/chessground.css'
+import Chess from "chess.js"
+import { Col, Modal } from "antd"
+import rook from "./images/wR.svg"
+import queen from "./images/wQ.svg"
+import bishop from "./images/wR.svg"
+import knight from "./images/wR.svg"
+import EvaluationBar from './EvaluationBar';
 import "./chessboard.css"
+import InfoBox from "./InfoBox"
 
-var stockfish = new Worker("stockfish.js");
 
-const game = new Chess();
-let chessboard;
+const stockfish = new Worker('stockfish.js')
 
-class WithMoveValidation extends Component {
+const Game = () => {
 
-    state = {
-        evaluation: 0
+  const [chess] = useState(new Chess())
+  const [pendingMove, setPendingMove] = useState()
+  const [selectVisible, setSelectVisible] = useState(false)
+  const [fen, setFen] = useState("")
+  const [lastMove, setLastMove] = useState()
+  const [evaluation, setEvaluation] = useState(0.0)
+  const [mate, setMate] = useState(0)
+
+  const onMove = (from, to) => {
+    const moves = chess.moves({ verbose: true })
+    for (let i = 0, len = moves.length; i < len; i++) { /* eslint-disable-line */
+      if (moves[i].flags.indexOf("p") !== -1 && moves[i].from === from) {
+        setPendingMove([from, to])
+        setSelectVisible(true)
+        return
+      }
+    }
+    if (chess.move({ from, to, promotion: "x" })) {
+      stockfish.postMessage(`position fen ${chess.fen()}`)
+      setFen(chess.fen())
+      setLastMove([from, to])
+      setTimeout(computerMove, 500)
+    }
+  }
+
+  const computerMove = () => {
+    stockfish.postMessage('go depth 19')
+  }
+
+  stockfish.onmessage = (event) => { 
+    var match = event.data.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/);
+    var evaluation = event.data.match(/(?<=cp )(-?\d*)/);
+    var mate = event.data.match(/(?<=mate )(-?\d*)/)
+    console.log(event.data)
+    // if (mate != null) {
+    //   setEvaluation(mate)
+    // }
+    if (evaluation != null) {
+      setEvaluation(evaluation[1] / 100)
+    }
+    if (match != null) {
+      chess.move({from: match[1], to:match[2]});
+      setFen(chess.fen())
+      setLastMove([match[1], match[2]])
+    }
+  }
+
+  const promotion = e => {
+    const from = pendingMove[0]
+    const to = pendingMove[1]
+    chess.move({ from, to, promotion: e })
+    setFen(chess.fen())
+    setLastMove([from, to])
+    setSelectVisible(false)
+    setTimeout(computerMove, 500)
+  }
+
+    const turnColor = () => {
+      return chess.turn() === "w" ? "white" : "black"
     }
 
-    componentDidMount() {
-        chessboard = new Chessboard(document.getElementById("board"), {
-            position: game.fen(),
-            orientation: COLOR.white,
-            moveInputMode: MOVE_INPUT_MODE.dragPiece,
-            responsive: true,
-            sprite: {
-            url: "/chessboard-sprite.svg", // pieces and markers are stored as svg in the sprite
-            grid: 40 // the sprite is tiled with one piece every 40px
-            }
-        })
-        chessboard.enableMoveInput(this.inputHandler);
-        this.computerMove()
+    const calcMovable = () => {
+      const dests = new Map()
+      chess.SQUARES.forEach(s => {
+        const ms = chess.moves({ square: s, verbose: true })
+        if (ms.length) dests.set(s, ms.map(m => m.to))
+      })
+      return {
+        free: false,
+        dests,
+        color: "white"
+      }
     }
-
-    inputHandler = (event) => {
-        console.log(event)
-        if (event.type === INPUT_EVENT_TYPE.moveDone) {
-            const move = {from: event.squareFrom, to: event.squareTo}
-            const result = game.move(move)
-            setTimeout(this.computerMove, 2000)
-            return result
-        } else {
-            return true
-        }
-    }
-
-    computerMove = () => {
-        stockfish.postMessage(`position fen ${game.fen()}`)
-        stockfish.postMessage('go depth 15')
-        let move;
-        let evaluation;
-
-        stockfish.onmessage = (event) => {  
-            // console.log(event)       
-            move = event.data.split(' ')[1]
-            if (event.data.split(' ')[9] !== undefined) {
-                evaluation = event.data.split(' ')[9] / 200
-                this.setState({
-                    evaluation: evaluation
-                })
-            }
-            game.move(move, {sloppy:true});
-            chessboard.setPosition(game.fen())
-        };
-    }
-
-  render() {
 
     return (
-        <div>
-            <EvaluationBar evaluation={this.state.evaluation} currentPlayer={game.turn()}/>
-            <div
-                id='board'
-                style={{
-                float: "left",
-                maxWidth: '80vh',
-                maxHeight: '80vh',
-                width: `calc(100vw - 40px)`,
-                height: `calc(95vw - 40px)`,
-                marginRight: '20p',
-                marginBottom: '20px'
-                }}
-                >
-            </div>
+      <div id ="chessboard">
+        <EvaluationBar currentPlayer={chess.currentPlayer} evaluation={evaluation}/>
+      <Col span={6} />
+      <Col span={12} style={{ top: "10%" }}>
+        <Chessground
+          width="38vw"
+          height="38vw"
+          turnColor={turnColor()}
+          movable={calcMovable()}
+          lastMove={lastMove}
+          fen={fen}
+          onMove={onMove}
+          style={{ margin: "auto" }}
+        />
+      </Col>
+      <InfoBox blah={chess.fen()} fen={chess.fen()}/>
+      <Col span={6} />
+      <Modal visible={selectVisible} footer={null} closable={false}>
+        <div style={{ textAlign: "center", cursor: "pointer" }}>
+          <span role="presentation" onClick={() => promotion("q")}>
+            <img src={queen} alt="" style={{ width: 50 }} />
+          </span>
+          <span role="presentation" onClick={() => promotion("r")}>
+            <img src={rook} alt="" style={{ width: 50 }} />
+          </span>
+          <span role="presentation" onClick={() => promotion("b")}>
+            <img src={bishop} alt="" style={{ width: 50 }} />
+          </span>
+          <span role="presentation" onClick={() => promotion("n")}>
+            <img src={knight} alt="" style={{ width: 50 }} />
+          </span>
         </div>
+      </Modal>
+    </div>
     );
-  }
 }
 
-export default WithMoveValidation;
+export default Game

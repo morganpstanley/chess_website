@@ -1,4 +1,42 @@
 #infobox {
-    border: black 2px solid;
-    height: 80vh;
+    height: 38vw;
+    width: 52vw;
+    position: relative;
+    background-color: seashell;
+    position: absolute;
+    top: 3.5rem;
+    margin: 20px;
+    right: 0px;
+}
+
+#position{
+    /* text-align: center; */
+    border-bottom: seashell 2px solid;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px;
+    padding-bottom: 5px;
+    border-bottom: seagreen 5px solid;
+    height: 3.2rem;
+}
+
+#book-image {
+    width: 3rem;
+    float: left;
+}
+
+#opening {
+    float: left;
+}
+
+#commentary {
+    padding: 2rem;
+}
+
+#commentary-background{
+    width: 10rem;
+    opacity: 10%;
+    position: fixed;
+    right: 22%;
+    top: 35%;
 }

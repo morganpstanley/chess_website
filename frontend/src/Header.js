@@ -7,7 +7,9 @@ class Header extends Component {
         return (
             <div id="header">
                 <h1 id="logo">
-                    CHESS, BABY
+                    <span id="logo-font">
+                        Little Handbook of Chess Openings
+                    </span>
                 </h1>
             </div>
         )

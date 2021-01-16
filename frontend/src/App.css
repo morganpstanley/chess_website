@@ -1,17 +1,11 @@
 body {
-    color: #333;
-    background-color: #f8f9fa;
-    padding: 20px;
     margin: 0;
-    font-family: "Helvetica Neue", sans-serif;
-    line-height: 1.3;
-    font-size: 17px; 
+    /* background-color: seagreen; */
+    /* background-image: url(./open-book.svg);
+    background-size: 90vw;
+    background-repeat: no-repeat; */
 }
 
-body * {
-    font-size: 17px; 
-}
-  
 h1 {
     margin-top: 0;
     font-size: 34px;

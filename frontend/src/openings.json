@@ -6255,13 +6255,15 @@
     "name": "Italian Game",
     "eco": "C50",
     "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4",
+    "comment": "The Italian Game. White develops their bishop and puts pressure on black's weak f7 pawn. Black's most popular moves are either Bc5, the Giuoco Piano; or Nf6, the Two Knight Defense. Newer players occasionally respond with h6, the Anti-Fried Liver Defense, but this is a fairly passive move which allows white to take control of the center."
   },
   {
     "name": "Italian Game: Anti-Fried Liver Defense",
     "eco": "C55",
     "fen": "r1bqkbnr/pppp1pp1/2n4p/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 h6"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 h6",
+    "comment": "The Anti-Fried Liver Defense. Black actively prevents white from moving their knight to g5. Unless actively trying to avoid the Giuoco Piano, it's probably better to play Bc5. Black's queen prevents Ng5, and now Nf6 isn't as dangerous because black can castle into safety and both the king and rook will support the f-pawn."
   },
   {
     "name": "Italian Game: Bird's Attack",
@@ -9165,7 +9167,8 @@
     "name": "King's Knight Opening",
     "eco": "C40",
     "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq",
-    "moves": "1. e4 e5 2. Nf3"
+    "moves": "1. e4 e5 2. Nf3",
+    "comment": "The most popular continuation. White develops their king's knight while also attacking black's pawn on e5."
   },
   {
     "name": "King's Knight Opening: Konstantinopolsky",
@@ -9177,19 +9180,22 @@
     "name": "King's Knight Opening: Normal Variation",
     "eco": "C44",
     "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6"
+    "moves": "1. e4 e5 2. Nf3 Nc6",
+    "comment": "Black responds by both developing their knight and defending their pawn."
   },
   {
     "name": "King's Pawn",
     "eco": "B00",
     "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq",
-    "moves": "1. e4"
+    "moves": "1. e4",
+    "comment": "e4 is a great start for white. It does two things: Grab space in the center and open up room for the queen and light-square bishop. Bobby Fischer was known to say e4 was 'Best by test.'"
   },
   {
     "name": "King's Pawn Game",
     "eco": "C20",
     "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq",
-    "moves": "1. e4 e5"
+    "moves": "1. e4 e5",
+    "comment": "A solid response. Black grabs there share of the space in the center and also opens room for their queen and light-squared bishop."
   },
   {
     "name": "King's Pawn Game: Alapin Opening",
@@ -11109,7 +11115,8 @@
     "name": "Philidor Defense",
     "eco": "C41",
     "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 d6"
+    "moves": "1. e4 e5 2. Nf3 d6",
+    "comment": "d6"
   },
   {
     "name": "Philidor Defense, 2. Nf3 d6 3. d4",
