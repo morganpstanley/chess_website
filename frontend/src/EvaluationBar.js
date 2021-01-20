@@ -9,11 +9,14 @@ class EvaluationBar extends Component {
 
     render() {
         let vh =  this.props.currentPlayer === 'w' ? 
-        19 - (this.props.evaluation  * 2) :
-        19 + (this.props.evaluation  * 2);
+        50 - (this.props.evaluation  * 4) :
+        50 + (this.props.evaluation  * 4);
+
+        if (vh > 100) {vh = 98}
+        
         return (
             <div id="evaluation-bar-holder">
-                <div id="evaluation-bar" style={{height: `${vh}vw`, transition: 'height 2s'}}>    
+                <div id="evaluation-bar" style={{height: `${vh}%`, transition: 'height 2s'}}>    
                     <p id="eval">{this.props.currentPlayer === 'b' ? '-' : '+'}{this.props.evaluation.toFixed(2)} </p>
                 </div>
             </div>
