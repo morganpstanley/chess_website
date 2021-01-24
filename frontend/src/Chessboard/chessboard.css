@@ -1,0 +1,17 @@
+.cg-wrap {
+  margin: 0px;
+  top: 20px;
+  min-width: 320px;
+  min-height: 320px;
+}
+
+#dashboard {
+  width: 100vw;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#chessboard {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+}

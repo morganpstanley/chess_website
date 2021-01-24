@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import Chessground from 'react-chessground'
 import 'react-chessground/dist/styles/chessground.css'
 import Chess from "chess.js"
-import rook from "./images/wR.svg"
-import queen from "./images/wQ.svg"
-import bishop from "./images/wB.svg"
-import knight from "./images/wN.svg"
-import EvaluationBar from './EvaluationBar';
+import rook from "../images/promotion-pieces/wR.svg"
+import queen from "../images/promotion-pieces/wQ.svg"
+import bishop from "../images/promotion-pieces/wB.svg"
+import knight from "../images/promotion-pieces/wN.svg"
+import EvaluationBar from '../EvaluationBar/EvaluationBar';
 import Modal from "react-modal"
 import "./chessboard.css"
-import InfoBox from "./InfoBox"
+import InfoBox from "../InfoBox/InfoBox"
 
 const customStyles = {
   content : {
@@ -28,17 +28,21 @@ Modal.setAppElement('#root')
 
 const Game = () => {
 
-  const [chess] = useState(new Chess('8/7P/k6K/8/8/8/8/8 w - - 0 1'))
+  const [chess] = useState(new Chess())
   const [pendingMove, setPendingMove] = useState()
   const [showModal, setShowModal] = useState(false)
-  const [fen, setFen] = useState('8/7P/k6K/8/8/8/8/8 w - - 0 1')
+  const [fen, setFen] = useState()
   const [lastMove, setLastMove] = useState()
   const [evaluation, setEvaluation] = useState(0.0)
+  const [computerOpponent, setComputerOpponent] = useState(true)
+  const [evalColor, setEvalColor] = useState('w')
 
   const onMove = (from, to) => {
     const moves = chess.moves({ verbose: true })
     for (let i = 0, len = moves.length; i < len; i++) { /* eslint-disable-line */
       if (moves[i].flags.indexOf("p") !== -1 && moves[i].from === from) {
+        stockfish.postMessage(`position fen ${chess.fen()}`)
+    stockfish.postMessage('go depth 19')
         setPendingMove([from, to])
         setShowModal(true)
         return
@@ -55,7 +59,7 @@ const Game = () => {
   const computerMove = () => {
     setShowModal(false);
     stockfish.postMessage(`position fen ${chess.fen()}`)
-    stockfish.postMessage('go depth 19')
+    stockfish.postMessage('go depth 15')
   }
 
   stockfish.onmessage = (event) => { 
@@ -64,8 +68,9 @@ const Game = () => {
     // var mate = event.data.match(/(?<=mate )(-?\d*)/)
     if (evaluation != null) {
       setEvaluation(evaluation[1] / 100)
+      setEvalColor(chess.turn())
     }
-    if (match != null) {
+    if (match != null && computerOpponent) {
       chess.move({from: match[1], to:match[2]});
       setFen(chess.fen())
       setLastMove([match[1], match[2]])
@@ -73,7 +78,6 @@ const Game = () => {
   }
 
   const promotion = e => {
-    console.log('d', pendingMove)
     const from = pendingMove[0]
     const to = pendingMove[1]
     chess.move({ from, to, promotion: e })
@@ -96,24 +100,33 @@ const Game = () => {
     return {
       free: false,
       dests,
-      color: "white"
+      color: turnColor()
     }
   }
 
+  const changeOpponent = () => {
+    setComputerOpponent(!computerOpponent)
+    console.log(computerOpponent)
+    return computerOpponent
+  }
+
   return (
-    <div id ="chessboard">
-      <EvaluationBar currentPlayer={chess.currentPlayer} evaluation={evaluation}/>
-      <Chessground
-        width="38vw"
-        height="38vw"
-        turnColor={turnColor()}
-        movable={calcMovable()}
-        lastMove={lastMove}
-        fen={fen}
-        onMove={onMove}
-        style={{ margin: "auto" }}
-      />
-    <InfoBox fen={chess.fen()}/>
+    <div id ="dashboard">
+
+      <div id="chessboard">
+        <EvaluationBar currentPlayer={evalColor} evaluation={evaluation}/>
+
+        <Chessground
+          turnColor={turnColor()}
+          movable={calcMovable()}
+          lastMove={lastMove}
+          fen={fen}
+          onMove={onMove}
+        />
+      </div>
+
+    <InfoBox fen={chess.fen()} changeOpponent={changeOpponent}/>
+
     <Modal isOpen={showModal} style={customStyles}>
       <div style={{ textAlign: "center", cursor: "pointer" }}>
         <span role="presentation" onClick={() => promotion("q")}>
@@ -130,6 +143,7 @@ const Game = () => {
         </span>
       </div>
     </Modal>
+
   </div>
   );
 }

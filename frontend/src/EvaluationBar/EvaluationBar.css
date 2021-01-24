@@ -1,25 +1,20 @@
 #evaluation-bar {
-    text-align: center;
-    float:left;
     width: 40px;
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(10, 10, 10, .8);
     max-height: 38vw;
     transition: 'height 2s';
 }
 
 #eval {
-    font-size: 10px;
-    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
 }
 
 #evaluation-bar-holder {
-    float: left;
-    float: left;
-    height: 38vw;
+    height: 512px;
     background-color: seashell;
     width: 40px;
     margin: 20px;
     max-height: 80vh;
-    z-index: -1;
-    
 }

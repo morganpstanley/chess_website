@@ -1,0 +1,81 @@
+#infobox {
+    height: 512px;
+    width: 52vw;
+    background-color: antiquewhite;
+    margin: 20px;
+    right: 0px;
+    flex: 1 0 300px;
+    min-width: 300px;
+    position: relative;
+}
+
+#position{
+    /* text-align: center; */
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px;
+    padding-bottom: 5px;
+    border-bottom: seagreen 5px solid;
+    height: 3.2rem;
+}
+
+#book-image {
+    width: 3rem;
+    float: left;
+}
+
+#opening {
+    float: left;
+}
+
+#commentary {
+    padding: 2rem;
+}
+
+#commentary-background-image{
+    width: 10rem;
+    opacity: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#gears {
+    width: 40px;
+}
+
+@media only screen and (max-width: 900px) {
+    #infobox {
+        height: 38vw;
+        width: 80vw;
+        background-color: antiquewhite;
+        margin: 20px;
+        right: 0px;
+        flex: 1 0 300px;
+        min-width: 300px;
+    }  
+
+    #commentary-background-image{
+        top: 60%;
+    }
+    
+    #chessboard {
+        width: 100vw;
+        margin-bottom: 3rem;
+    }
+
+    .cg-wrap {
+        width: 75vw;
+        height: 75vw;
+    }
+
+    
+    #evaluation-bar-holder {
+        height: 75vw;
+        min-height: 320px;
+    }
+}

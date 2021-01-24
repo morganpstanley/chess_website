@@ -1,7 +1,8 @@
 #header {
     width: 100vw;
-    height: 3.5rem;
+    height: 4.5rem;
     background-color: seagreen;
+    text-align: center;
 }
 
 #logo-image {
@@ -17,9 +18,10 @@
     padding: 1%;
 }
 
-#logo-font{
-    font-size: 1rem;
+#logo{
+    font-family: 'Lato', sans-serif;
+    font-size: 1.7rem;
     vertical-align: middle;
-    margin-left: 15rem;
     letter-spacing: 2px;
+    color: antiquewhite;
 }

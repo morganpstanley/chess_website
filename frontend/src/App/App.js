@@ -1,6 +1,6 @@
 import './App.css';
-import ChessBoard from "./ChessBoard"
-import Header from "./Header"
+import ChessBoard from "../Chessboard/ChessBoard"
+import Header from "../Header/Header"
 
 function App() {
   
