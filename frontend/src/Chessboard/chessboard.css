@@ -1,4 +1,5 @@
 .cg-wrap {
+  grid-area: b;
   margin: 0px;
   top: 20px;
   min-width: 320px;
@@ -13,5 +14,11 @@
 
 #chessboard {
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-areas: 
+    "e b b b"
+    "e b b b"
+    "e b b b"
+    ". c c c";
+  grid-template-columns: .8fr 2fr 2fr 2fr;
+  grid-template-rows: 2fr 2fr 2fr 1fr;
 }

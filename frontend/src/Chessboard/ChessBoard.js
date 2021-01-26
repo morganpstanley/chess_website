@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import Chessground from 'react-chessground'
 import 'react-chessground/dist/styles/chessground.css'
 import Chess from "chess.js"
-import rook from "../images/promotion-pieces/wR.svg"
-import queen from "../images/promotion-pieces/wQ.svg"
-import bishop from "../images/promotion-pieces/wB.svg"
-import knight from "../images/promotion-pieces/wN.svg"
+import rook from "../images/pieces/wR.svg"
+import queen from "../images/pieces/wQ.svg"
+import bishop from "../images/pieces/wB.svg"
+import knight from "../images/pieces/wN.svg"
 import EvaluationBar from '../EvaluationBar/EvaluationBar';
 import Modal from "react-modal"
 import "./chessboard.css"
 import InfoBox from "../InfoBox/InfoBox"
+import CaptureArea from "../CaptureArea/CaptureArea"
 
 const customStyles = {
   content : {
@@ -28,10 +29,10 @@ Modal.setAppElement('#root')
 
 const Game = () => {
 
-  const [chess] = useState(new Chess())
+  const [chess] = useState(new Chess('3qkbnr/3ppppp/8/8/8/8/PPPPP3/RNBQK3 w Qk - 0 1'))
   const [pendingMove, setPendingMove] = useState()
   const [showModal, setShowModal] = useState(false)
-  const [fen, setFen] = useState()
+  const [fen, setFen] = useState('3qkbnr/3ppppp/8/8/8/8/PPPPP3/RNBQK3 w Qk - 0 1')
   const [lastMove, setLastMove] = useState()
   const [evaluation, setEvaluation] = useState(0.0)
   const [computerOpponent, setComputerOpponent] = useState(true)
@@ -104,6 +105,10 @@ const Game = () => {
     }
   }
 
+  // const captures = () => {
+
+  // }
+
   const changeOpponent = () => {
     setComputerOpponent(!computerOpponent)
     console.log(computerOpponent)
@@ -123,28 +128,30 @@ const Game = () => {
           fen={fen}
           onMove={onMove}
         />
+
+        <CaptureArea fen={chess.fen()}/>
       </div>
 
-    <InfoBox fen={chess.fen()} changeOpponent={changeOpponent}/>
+      <InfoBox fen={chess.fen()} changeOpponent={changeOpponent}/>
 
-    <Modal isOpen={showModal} style={customStyles}>
-      <div style={{ textAlign: "center", cursor: "pointer" }}>
-        <span role="presentation" onClick={() => promotion("q")}>
-          <img src={queen} alt="" style={{ width: 50 }} />
-        </span>
-        <span role="presentation" onClick={() => promotion("r")}>
-          <img src={rook} alt="" style={{ width: 50 }} />
-        </span>
-        <span role="presentation" onClick={() => promotion("b")}>
-          <img src={bishop} alt="" style={{ width: 50 }} />
-        </span>
-        <span role="presentation" onClick={() => promotion("n")}>
-          <img src={knight} alt="" style={{ width: 50 }} />
-        </span>
-      </div>
-    </Modal>
+      <Modal isOpen={showModal} style={customStyles}>
+        <div style={{ textAlign: "center", cursor: "pointer" }}>
+          <span role="presentation" onClick={() => promotion("q")}>
+            <img src={queen} alt="" style={{ width: 50 }} />
+          </span>
+          <span role="presentation" onClick={() => promotion("r")}>
+            <img src={rook} alt="" style={{ width: 50 }} />
+          </span>
+          <span role="presentation" onClick={() => promotion("b")}>
+            <img src={bishop} alt="" style={{ width: 50 }} />
+          </span>
+          <span role="presentation" onClick={() => promotion("n")}>
+            <img src={knight} alt="" style={{ width: 50 }} />
+          </span>
+        </div>
+      </Modal>
 
-  </div>
+    </div>
   );
 }
 

@@ -1,0 +1,25 @@
+#capture-area-wrapper {
+    grid-area: c;
+}
+
+.capture-area {
+    width: 90%;
+    height: 40px;
+}
+
+#capture-area-white {
+    grid-column: 1;
+}
+
+#capture-area-black {
+    grid-column: 2;
+}
+
+.captured-piece {
+    width: 30px;
+    margin: -5px;
+}
+
+.captured-pawn {
+    margin-right: -8px;
+}

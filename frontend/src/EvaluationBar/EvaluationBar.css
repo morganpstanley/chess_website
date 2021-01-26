@@ -12,6 +12,7 @@
 }
 
 #evaluation-bar-holder {
+    grid-area: e;
     height: 512px;
     background-color: seashell;
     width: 40px;
