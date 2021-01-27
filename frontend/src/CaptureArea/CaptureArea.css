@@ -21,5 +21,10 @@
 }
 
 .captured-pawn {
-    margin-right: -8px;
+    margin-right: -5px;
+    margin-left: -10px;
+}
+
+.captured-bishop {
+    margin-left: -10px
 }

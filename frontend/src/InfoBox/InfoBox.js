@@ -41,7 +41,7 @@ const InfoBox = (props) => {
                 </button>
             </div>
             <div id="commentary">
-                {options? <Options changeOpponent={props.changeOpponent}/> : comment}
+                {options? <Options changeOpponent={props.changeOpponent} changePlayerColor={props.changePlayerColor}/> : comment}
                 <img id="commentary-background-image" src={openBook} alt="open book" />
             </div>
         </div>

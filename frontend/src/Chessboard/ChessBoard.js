@@ -1,42 +1,28 @@
 import React, {useState} from 'react';
 import Chessground from 'react-chessground'
-import 'react-chessground/dist/styles/chessground.css'
 import Chess from "chess.js"
-import rook from "../images/pieces/wR.svg"
-import queen from "../images/pieces/wQ.svg"
-import bishop from "../images/pieces/wB.svg"
-import knight from "../images/pieces/wN.svg"
 import EvaluationBar from '../EvaluationBar/EvaluationBar';
-import Modal from "react-modal"
-import "./chessboard.css"
 import InfoBox from "../InfoBox/InfoBox"
 import CaptureArea from "../CaptureArea/CaptureArea"
+import PromotionPrompt from "../PromotionPrompt/PromotionPrompt"
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
+import 'react-chessground/dist/styles/chessground.css'
+import "./chessboard.css"
 
 const stockfish = new Worker('stockfish.js')
 
-Modal.setAppElement('#root')
-
 const Game = () => {
 
-  const [chess] = useState(new Chess('3qkbnr/3ppppp/8/8/8/8/PPPPP3/RNBQK3 w Qk - 0 1'))
+  const [chess] = useState(new Chess('k7/6KP/8/8/8/8/8/8 w - - 0 1'))
   const [pendingMove, setPendingMove] = useState()
-  const [showModal, setShowModal] = useState(false)
-  const [fen, setFen] = useState('3qkbnr/3ppppp/8/8/8/8/PPPPP3/RNBQK3 w Qk - 0 1')
+  const [fen, setFen] = useState('k7/6KP/8/8/8/8/8/8 w - - 0 1')
   const [lastMove, setLastMove] = useState()
   const [evaluation, setEvaluation] = useState(0.0)
   const [computerOpponent, setComputerOpponent] = useState(true)
   const [evalColor, setEvalColor] = useState('w')
+  const [mate, setMate] = useState(0)
+  const [playerColor, setPlayerColor] = useState('white')
+  const [showModal, setShowModal] = useState(false)
 
   const onMove = (from, to) => {
     const moves = chess.moves({ verbose: true })
@@ -64,17 +50,20 @@ const Game = () => {
   }
 
   stockfish.onmessage = (event) => { 
-    var match = event.data.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/);
+    var bestMove = event.data.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/);
     var evaluation = event.data.match(/(?<=cp )(-?\d*)/);
-    // var mate = event.data.match(/(?<=mate )(-?\d*)/)
+    var mate = event.data.match(/(?<=mate )(-?\d*)/)
     if (evaluation != null) {
       setEvaluation(evaluation[1] / 100)
       setEvalColor(chess.turn())
     }
-    if (match != null && computerOpponent) {
-      chess.move({from: match[1], to:match[2]});
+    if (bestMove != null && computerOpponent) {
+      chess.move({from: bestMove[1], to:bestMove[2]});
       setFen(chess.fen())
-      setLastMove([match[1], match[2]])
+      setLastMove([bestMove[1], bestMove[2]])
+    }
+    if (mate) {
+      setMate(mate[0])
     }
   }
 
@@ -105,23 +94,23 @@ const Game = () => {
     }
   }
 
-  // const captures = () => {
-
-  // }
-
   const changeOpponent = () => {
     setComputerOpponent(!computerOpponent)
-    console.log(computerOpponent)
     return computerOpponent
+  }
+
+  const changePlayerColor = () => {
+      setPlayerColor(playerColor === "white" ? "black" : "white")
   }
 
   return (
     <div id ="dashboard">
 
       <div id="chessboard">
-        <EvaluationBar currentPlayer={evalColor} evaluation={evaluation}/>
+        <EvaluationBar currentPlayer={evalColor} evaluation={evaluation} mate={mate}/>
 
         <Chessground
+          orientation={playerColor}
           turnColor={turnColor()}
           movable={calcMovable()}
           lastMove={lastMove}
@@ -132,24 +121,13 @@ const Game = () => {
         <CaptureArea fen={chess.fen()}/>
       </div>
 
-      <InfoBox fen={chess.fen()} changeOpponent={changeOpponent}/>
+    <InfoBox 
+      fen={chess.fen()} 
+      changeOpponent={changeOpponent} 
+      changePlayerColor={changePlayerColor} 
+    />
 
-      <Modal isOpen={showModal} style={customStyles}>
-        <div style={{ textAlign: "center", cursor: "pointer" }}>
-          <span role="presentation" onClick={() => promotion("q")}>
-            <img src={queen} alt="" style={{ width: 50 }} />
-          </span>
-          <span role="presentation" onClick={() => promotion("r")}>
-            <img src={rook} alt="" style={{ width: 50 }} />
-          </span>
-          <span role="presentation" onClick={() => promotion("b")}>
-            <img src={bishop} alt="" style={{ width: 50 }} />
-          </span>
-          <span role="presentation" onClick={() => promotion("n")}>
-            <img src={knight} alt="" style={{ width: 50 }} />
-          </span>
-        </div>
-      </Modal>
+    <PromotionPrompt promotion={promotion} showModal={showModal} />
 
     </div>
   );

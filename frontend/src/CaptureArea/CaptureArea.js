@@ -13,10 +13,6 @@ import N from "../images/pieces/bN.svg"
 import R from "../images/pieces/bR.svg"
 import Q from "../images/pieces/bQ.svg"
 
-
-
-
-
 const CaptureArea = ({fen}) => {
 
     const [whitePieces, setWhitePieces] = useState([]);

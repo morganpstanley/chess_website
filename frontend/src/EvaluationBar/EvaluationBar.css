@@ -3,19 +3,24 @@
     background-color: rgb(10, 10, 10, .8);
     max-height: 38vw;
     transition: 'height 2s';
+    text-align: center;
 }
 
 #eval {
     font-size: 12px;
     font-weight: 600;
-    text-align: center;
+    color: seashell;
+    margin: 12px 0px 0px 3px;
+    float: left;
 }
 
 #evaluation-bar-holder {
     grid-area: e;
     height: 512px;
-    background-color: seashell;
+    background-color: antiquewhite;
     width: 40px;
     margin: 20px;
     max-height: 80vh;
+    text-align: center;
+    z-index: -1;
 }

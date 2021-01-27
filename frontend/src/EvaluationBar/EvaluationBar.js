@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import "./EvaluationBar.css"
 
-const EvaluationBar = ({currentPlayer, evaluation}) => {
+const EvaluationBar = ({currentPlayer, evaluation, mate}) => {
 
     const [vh, setVh] = useState(0);
     const [better, setBetter] = useState('w');
@@ -29,11 +29,19 @@ const EvaluationBar = ({currentPlayer, evaluation}) => {
             setDisplayNum(Math.abs(evaluation).toFixed(2))
         };
 
-    }, [currentPlayer, evaluation, displayNum]);
+    }, [currentPlayer, evaluation, mate, displayNum]);
+
+    const displayEval = () => {
+        if (mate !== 0) {
+            return "#" + mate
+        } else {
+            return better === 'w'  ? `+${displayNum}` : `-${displayNum}`
+        }
+    }
         
     return (
         <div id="evaluation-bar-holder">
-            <p id="eval">{better === 'w'  ? '+' : '-'}{displayNum} </p>
+            <p id="eval">{displayEval()} </p>
             <div id="evaluation-bar" style={{height: `${vh}%`, transition: 'height 2s'}} />
         </div>
     );
