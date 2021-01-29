@@ -1,13 +1,13 @@
 import './App.css';
-import ChessBoard from "../Chessboard/ChessBoard"
 import Header from "../Header/Header"
+import Dashboard from '../Dashboard/Dashboard';
 
 function App() {
   
   return (
     <div className="App">
       <Header />
-      <ChessBoard />
+      <Dashboard />
     </div>
   );
 }

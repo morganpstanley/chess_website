@@ -7,17 +7,17 @@ import Options from "../Options/Options"
 
 import "./InfoBox.css"
 
-const InfoBox = (props) => {
+const InfoBox = ({chess, fen, changeOpponent, changePlayerColor}) => {
 
-    const [opening, setOpening] = useState('')
-    const [eco, setEco] = useState('')
-    const [comment, setComment] = useState('')
+    const [opening, setOpening] = useState()
+    const [eco, setEco] = useState()
+    const [comment, setComment] = useState()
     const [options, showOptions] = useState(false)
 
     useEffect(() => {
-        let fenArray = props.fen.split(' ')
-        let fen = fenArray[0] + " " + fenArray[1] + " " + fenArray[2]
-        let posistion = json.find(element => element.fen === fen)
+        let fenArray = fen.split(' ')
+        let fenAgain = fenArray[0] + " " + fenArray[1] + " " + fenArray[2]
+        let posistion = json.find(element => element.fen === fenAgain)
 
         if (posistion && posistion.name !== posistion) {
             setOpening(posistion.name)
@@ -29,21 +29,28 @@ const InfoBox = (props) => {
         } else if (posistion === undefined && comment !== "") {
             setComment("")
         }
-    }, [props.fen, opening, eco, comment]);    
+    }, [chess, fen, opening, eco, comment]);    
 
     return (
         <div id="infobox">
+
             <div id="position">
                 <img src={chessBookWithPawn} alt="book with pawn on front" id="book-image"/>
-                <span id="opening"> {eco} {opening} </span> <br />
+                <span id="opening"> {eco} {opening} </span> 
+                <br />
                 <button className="ribbon" onClick={() => showOptions(!options)}>
                     <img src={chessGear} alt="gear with chess piece in center" id="gears" />
                 </button>
             </div>
+
             <div id="commentary">
-                {options? <Options changeOpponent={props.changeOpponent} changePlayerColor={props.changePlayerColor}/> : comment}
+                {options ? <Options 
+                    changeOpponent={changeOpponent} 
+                    changePlayerColor={changePlayerColor}/> 
+                : comment}
                 <img id="commentary-background-image" src={openBook} alt="open book" />
             </div>
+
         </div>
     );
 }

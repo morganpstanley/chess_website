@@ -1,27 +1,21 @@
 import React, {useState} from 'react';
 import Chessground from 'react-chessground'
-import Chess from "chess.js"
 import EvaluationBar from '../EvaluationBar/EvaluationBar';
-import InfoBox from "../InfoBox/InfoBox"
 import CaptureArea from "../CaptureArea/CaptureArea"
 import PromotionPrompt from "../PromotionPrompt/PromotionPrompt"
 
 import 'react-chessground/dist/styles/chessground.css'
-import "./chessboard.css"
+import "./Chessboard.css"
 
 const stockfish = new Worker('stockfish.js')
 
-const Game = () => {
+const Chessboard = ({chess, orientation, computerOpponent, setFen}) => {
 
-  const [chess] = useState(new Chess('k7/6KP/8/8/8/8/8/8 w - - 0 1'))
   const [pendingMove, setPendingMove] = useState()
-  const [fen, setFen] = useState('k7/6KP/8/8/8/8/8/8 w - - 0 1')
   const [lastMove, setLastMove] = useState()
   const [evaluation, setEvaluation] = useState(0.0)
-  const [computerOpponent, setComputerOpponent] = useState(true)
   const [evalColor, setEvalColor] = useState('w')
   const [mate, setMate] = useState(0)
-  const [playerColor, setPlayerColor] = useState('white')
   const [showModal, setShowModal] = useState(false)
 
   const onMove = (from, to) => {
@@ -94,43 +88,24 @@ const Game = () => {
     }
   }
 
-  const changeOpponent = () => {
-    setComputerOpponent(!computerOpponent)
-    return computerOpponent
-  }
-
-  const changePlayerColor = () => {
-      setPlayerColor(playerColor === "white" ? "black" : "white")
-  }
-
   return (
-    <div id ="dashboard">
-
       <div id="chessboard">
         <EvaluationBar currentPlayer={evalColor} evaluation={evaluation} mate={mate}/>
 
         <Chessground
-          orientation={playerColor}
+          orientation={orientation}
           turnColor={turnColor()}
           movable={calcMovable()}
           lastMove={lastMove}
-          fen={fen}
+          fen={chess.fen()}
           onMove={onMove}
         />
 
         <CaptureArea fen={chess.fen()}/>
+
+        <PromotionPrompt promotion={promotion} showModal={showModal}/>
       </div>
-
-    <InfoBox 
-      fen={chess.fen()} 
-      changeOpponent={changeOpponent} 
-      changePlayerColor={changePlayerColor} 
-    />
-
-    <PromotionPrompt promotion={promotion} showModal={showModal} />
-
-    </div>
   );
 }
 
-export default Game
+export default Chessboard
