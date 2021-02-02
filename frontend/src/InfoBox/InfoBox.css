@@ -48,6 +48,30 @@
     width: 40px;
 }
 
+.annotated-move {
+    font-size: 20px;
+    background-color: seagreen;
+    border: 4px seagreen solid;
+    border-radius: 40px;
+    margin: 3px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: antiquewhite;
+}
+
+#continuations {
+    position: absolute;
+    bottom: 10px;
+    margin: 10px;
+}
+
+#continuations-title {
+    width: 200px;
+    position: absolute;
+    bottom: 50px;
+    font-style: italic;
+}
+
 @media only screen and (max-width: 900px) {
     #infobox {
         height: 38vw;
