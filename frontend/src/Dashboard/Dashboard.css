@@ -18,7 +18,7 @@
     "e b b b"
     "e b b b"
     "e b b b"
-    ". c c c";
+    "d c c c";
   grid-template-columns: .8fr 2fr 2fr 2fr;
   grid-template-rows: 2fr 2fr 2fr 1fr;
 }

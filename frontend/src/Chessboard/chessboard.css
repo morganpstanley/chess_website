@@ -1,0 +1,18 @@
+#depth {
+    grid-area: d;
+    background-color: antiquewhite;
+    width: 40px;
+    height: 50px;
+    margin: 0px 20px 20px;
+    text-align: center;
+}
+
+#depth-title {
+    font-size: 8px;
+    font-weight: 600;
+}
+
+#depth-num {
+    font-size: 18px;
+    font-weight: 700;
+}

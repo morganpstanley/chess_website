@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Chess from "chess.js"
 import InfoBox from "../InfoBox/InfoBox"
 import Chessboard from "../Chessboard/Chessboard"
@@ -27,13 +27,15 @@ const Dashboard = () => {
 
     <Chessboard 
       chess={chess} 
-      orientation={playerColor}
+      playerColor={playerColor}
       computerOpponent={computerOpponent}
       setFen={setFen}
     />
 
     <InfoBox 
+      chess={chess}
       fen={chess.fen()} 
+      pgn={chess.pgn()}
       changeOpponent={changeOpponent} 
       changePlayerColor={changePlayerColor} 
     />
