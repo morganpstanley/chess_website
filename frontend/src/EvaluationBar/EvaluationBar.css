@@ -1,8 +1,6 @@
 #evaluation-bar {
     width: 40px;
     background-color: rgb(10, 10, 10, .8);
-    max-height: 38vw;
-    transition: 'height 2s';
     text-align: center;
 }
 
