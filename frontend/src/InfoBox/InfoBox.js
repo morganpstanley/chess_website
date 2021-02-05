@@ -48,10 +48,39 @@ const InfoBox = ({chess, fen, pgn, changeOpponent, changePlayerColor}) => {
     
     const annotatedMoves = () => {
         return annotated?.map(opening => {
-        const arr = opening.moves.split(' ')
-        const move = arr[arr.length - 1]
-        return <button key={opening.name} className="annotated-move">{move}</button>
+            let color;
+            if (opening?.analysis === "bad") {
+                color = "rgb(255, 99, 110)"
+            } else if (opening?.analysis === "forced") {
+                color = "cornflowerblue"
+            }              
+            else {
+                color = "seagreen"
+            }
+            const arr = opening.moves.split(' ')
+            const move = arr[arr.length - 1]
+            return <button key={opening.name} style={{backgroundColor:color, borderColor:color}} className="annotated-move">{move}</button>
         })
+    }
+
+    const currentInfo = () => {
+        if (options) {
+            return (
+                <div>
+                    <Options 
+                    changeOpponent={changeOpponent} 
+                    changePlayerColor={changePlayerColor}/> 
+                </div>
+            )
+        } else {
+            return (
+                <div>{comment}</div>
+            )
+        }
+    }
+
+    const undoMove = () => {
+        chess.undo()
     }
 
     return (
@@ -61,23 +90,20 @@ const InfoBox = ({chess, fen, pgn, changeOpponent, changePlayerColor}) => {
                 <img src={chessBookWithPawn} alt="book with pawn on front" id="book-image"/>
                 <span id="opening"> {eco} {opening} </span> 
                 <br />
-                <button className="ribbon" onClick={() => showOptions(!options)}>
+                <button className={options ? "ribbon active" : "ribbon"} onClick={() => showOptions(!options)}>
                     <img src={chessGear} alt="gear with chess piece in center" id="gears" />
                 </button>
             </div>
 
             <div id="commentary">
-                {options ? <Options 
-                    changeOpponent={changeOpponent} 
-                    changePlayerColor={changePlayerColor}/> 
-                : comment}
+                {currentInfo()}
                 <br />
                 <img id="commentary-background-image" src={openBook} alt="open book" />
             </div>
 
             <div id="continuations">
-            <span id="continuations-title">Annotated Continuations:</span> <br />
-            {annotatedMoves()}
+                <span id="continuations-title">Annotated Continuations:</span> <br />
+                {annotatedMoves()}
             </div>
 
         </div>

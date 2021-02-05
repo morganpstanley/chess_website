@@ -3147,7 +3147,8 @@
     "name": "English Opening",
     "eco": "A10",
     "fen": "rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq",
-    "moves": "1. c4"
+    "moves": "1. c4",
+    "comment": "English Opening"
   },
   {
     "name": "English Opening: 2. g4",
@@ -6256,14 +6257,15 @@
     "eco": "C50",
     "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4",
-    "comment": "The Italian Game. White develops their bishop and puts pressure on black's weak f7 pawn. Black's most popular moves are either Bc5, the Giuoco Piano; or Nf6, the Two Knight Defense. Newer players occasionally respond with h6, the Anti-Fried Liver Defense, but this is a fairly passive move which allows white to take control of the center."
+    "comment": "The Italian Game. White develops their bishop and puts pressure on black's weak f7 pawn. Black's most popular moves are either Bc5, the Giuoco Piano; or Nf6, the Two Knights Defense. Newer players occasionally respond with h6, the Anti-Fried Liver Defense, but this is a fairly passive move which allows white to take control of the center."
   },
   {
     "name": "Italian Game: Anti-Fried Liver Defense",
     "eco": "C55",
     "fen": "r1bqkbnr/pppp1pp1/2n4p/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 h6",
-    "comment": "The Anti-Fried Liver Defense. Black actively prevents white from moving their knight to g5. Unless actively trying to avoid the Giuoco Piano, it's probably better to play Bc5. Black's queen prevents Ng5, and now Nf6 isn't as dangerous because black can castle into safety and both the king and rook will support the f-pawn."
+    "comment": "The Anti-Fried Liver Defense. Black actively prevents white from moving their knight to g5. Though not a terrible move, black loses a tempo and allows white to quickly attack and gain control of the center. A better response would be either Bc5, the Giuoco Piano, or to allow the Knight Attack by playing Nf6 and quickly defanging it with 4....d4 5. exd5 Na5! (instead of the natural-looking Nxd5).",
+    "analysis": "bad"
   },
   {
     "name": "Italian Game: Bird's Attack",
@@ -6935,7 +6937,8 @@
     "name": "Italian Game: Two Knights Defense",
     "eco": "C55",
     "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6",
+    "comment": "Black develops their kingside knight to its best square. It's important to notice, however, by blocking the black queen's access to the g5 square, black has invited white to move their knight there and attack the weak f7 square with both the bishop and the knight. Though black is fine if played correctly, a blunder here can easily cost black the game."
   },
   {
     "name": "Italian Game: Two Knights Defense, 3. Bc4 Nf6 4. d4 Nxe4",
@@ -7001,13 +7004,32 @@
     "name": "Italian Game: Two Knights Defense, Knight Attack",
     "eco": "C57",
     "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5",
+    "comment": "White takes advantage of 3...Nf6 to move to the g5 square previously guarded by the Queen. If black isn't careful, white will then play Nxf7 forking both the queen and the rook."
   },
   {
     "name": "Italian Game: Two Knights Defense, Knight Attack, Normal Variation",
     "eco": "C57",
     "fen": "r1bqkb1r/ppp2ppp/2n2n2/3pp1N1/2B1P3/8/PPPP1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5",
+    "comment": "The only safe response. Black's pawn interposes itself between the bishop and its target. White will be forced to exchange their e-pawn for it and continue blocking their bishop's view of f7.",
+    "analysis": "forced"
+  },
+  {
+    "name": "Italian Game: Two Knights Defense, Knight Attack, Normal Variation",
+    "eco": "C57",
+    "fen": "r1bqkb1r/ppp2ppp/2n2n2/3Pp1N1/2B5/8/PPPP1PPP/RNBQK2R b KQkq",
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5",
+    "comment": "The only good move. White is forced to exchange pawns or move their bishop while losing their e-pawn and losing tempo.",
+    "analysis": "forced"
+  },
+  {
+    "name": "Italian Game: Two Knights Defense, Knight Attack, Normal Variation",
+    "eco": "C57",
+    "fen": "r1bqkb1r/ppp2ppp/2n5/3np1N1/2B5/8/PPPP1PPP/RNBQK2R w KQkq",
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Nxd5",
+    "comment": "This is a common move among newer players, but not a very good one. Black has not defanged white's attack, only provoked it. White will often follow up with the aggressive Fried Liver or Lolli Attack.",
+    "analysis": "bad"
   },
   {
     "name": "Italian Game: Two Knights Defense, Knorre Variation",
@@ -7091,7 +7113,9 @@
     "name": "Italian Game: Two Knights Defense, Polerio Defense",
     "eco": "C57",
     "fen": "r1bqkb1r/ppp2ppp/5n2/n2Pp1N1/2B5/8/PPPP1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5",
+    "comment": "New players will often play Nxd5, eager to win back a pawn, but quickly regret it. This is the accurate response. Black moves their knight out of danger while also attacking white's bishop.",
+    "analysis": "forced"
   },
   {
     "name": "Italian Game: Two Knights Defense, Polerio Defense, Bishop Check Line",
@@ -9168,7 +9192,7 @@
     "eco": "C40",
     "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq",
     "moves": "1. e4 e5 2. Nf3",
-    "comment": "The most popular continuation. White develops their king's knight while also attacking black's pawn on e5."
+    "comment": "By far white's most popular response after 1. e4 e5. 2. Nf3 does several things; It attacks the pawn on e5 and prepares d4, develops the king's knight to it's most active square, and removes one of the two pieces preventing the king from castling kingside."
   },
   {
     "name": "King's Knight Opening: Konstantinopolsky",
@@ -9181,21 +9205,21 @@
     "eco": "C44",
     "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6",
-    "comment": "Black responds by both developing their knight and defending their pawn."
+    "comment": "Because black is behind a tempo, black's most popular response to 2. Nf3 is to move their knight to c6 to both develop and protect their e-pawn."
   },
   {
     "name": "King's Pawn",
     "eco": "B00",
     "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq",
     "moves": "1. e4",
-    "comment": "e4 is a great start for white. It does two things: Grab space in the center and open up room for the queen and light-square bishop. Bobby Fischer was known to say e4 was 'Best by test.'"
+    "comment": "According to Bobby Fischer e4 is \"Best by test.\" Compared to the second most popular move, d4, e4 often leads to more open positions and is therefore great for people who either want to avoid the complications of closed positions or want to be aggressive. Due to the support of the queen (and oftentimes the knight on f3 or f6) both will still be able to play d4 or d5, whereas after 1. d4, the most common responses, d5 and Nf6, prevent any current thoughts about e4."
   },
   {
     "name": "King's Pawn Game",
     "eco": "C20",
     "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq",
     "moves": "1. e4 e5",
-    "comment": "A solid response. Black grabs there share of the space in the center and also opens room for their queen and light-squared bishop."
+    "comment": "One of black's most popular responses along with the Sicilian Defense(c5). e5 is good for most of the same reasons e4 is; black claims their share of the center and opens up lines for their queen and bishop."
   },
   {
     "name": "King's Pawn Game: Alapin Opening",
@@ -13672,7 +13696,8 @@
     "name": "Queen's Pawn",
     "eco": "A40",
     "fen": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq",
-    "moves": "1. d4"
+    "moves": "1. d4",
+    "comment": "Queen's pawn"
   },
   {
     "name": "Queen's Pawn, 1... d6",

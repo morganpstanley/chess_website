@@ -16,3 +16,9 @@
     font-size: 18px;
     font-weight: 700;
 }
+
+button#undo-button {
+    height: 20px;
+    background-color: #FF636E;
+    border: none;
+}

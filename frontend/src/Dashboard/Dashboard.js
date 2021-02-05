@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const [chess] = useState(new Chess())
   const [fen, setFen] = useState()
-  const [computerOpponent, setComputerOpponent] = useState(true)
+  const [computerOpponent, setComputerOpponent] = useState(false)
   const [playerColor, setPlayerColor] = useState('white')
 
   const changeOpponent = () => {

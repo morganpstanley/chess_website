@@ -81,7 +81,6 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
   }
 
   const move = (from, to) => {
-    console.log(chess.pgn())
     chess.move({from, to});
     setFen(chess.fen());
     setLastMove([from, to]);
@@ -141,6 +140,10 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
     }
   }
 
+  const undoMove = () => {
+    chess.undo()
+}
+
   return (
       <div id="chessboard">
         <EvaluationBar playerColor={playerColor} evaluationObj={evaluation}/>
@@ -159,6 +162,8 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
           <br />
           <span id="depth-num">{depth}</span>
         </div>
+
+        <button id="undo-button" onClick={undoMove}>⟲</button>
 
         <CaptureArea fen={chess.fen()}/>
 

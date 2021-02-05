@@ -1,11 +1,10 @@
 import "./Header.css"
+import logo from "../images/chess-trek.png";
 
 const Header = () => {
     return (
         <div id="header">
-            <h1 id="logo">
-                A Chess Opening Companion
-            </h1>
+            <img src={logo} id="logo-image" alt="logo" />
         </div>
     )
 }

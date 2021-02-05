@@ -2,26 +2,25 @@
     width: 100vw;
     height: 4.5rem;
     background-color: seagreen;
-    text-align: center;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    display : flex;
+    align-items : center;
 }
 
 #logo-image {
-    width: 4rem;
+    width: 10rem;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 4%;
-    border-radius: 20%;
-    position: absolute;
-    left: 47%;
-    top: 10px;
-    padding: 1%;
+    filter: invert(1);
+    margin-left: 20px;
+    border-right: 2px solid;
+    padding-right: 20px;
 }
 
 #logo{
     font-family: 'Lato', sans-serif;
     font-size: 1.7rem;
-    vertical-align: middle;
     letter-spacing: 2px;
-    color: antiquewhite;
+    color: white;
+    margin: 0px;
+    margin-left: 30px;
 }
