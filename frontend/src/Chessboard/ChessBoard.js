@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from "react-redux"
 import Chessground from 'react-chessground'
 import EvaluationBar from '../EvaluationBar/EvaluationBar';
 import CaptureArea from "../CaptureArea/CaptureArea"
@@ -11,22 +12,24 @@ const stockfishPlayer = new Worker('stockfish.js')
 const stockfishWhite = new Worker('stockfish.js')
 const stockfishBlack = new Worker('stockfish.js')
 
-const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
+const Chessboard = ({playerColor, computerOpponent}) => {
 
+  const chess = useSelector(state => state.game)
+  const fen = useSelector(state => state.fen)
+  const depth = useSelector(state => state.depth)
+  const [currentDepth, setCurrentDepth] = useState(0)
   const [pendingMove, setPendingMove] = useState()
   const [lastMove, setLastMove] = useState()
   const [evaluation, setEvaluation] = useState({evaluation: 0.2, color: "w", mate: 0})
-  const [depth, setDepth] = useState(0)
   const [showModal, setShowModal] = useState(false)
-  const isInitialMount = useRef(true);
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-   } else {
-      stockfishMove()
-   }
-  }, [playerColor])
+  const stockfishMove = () => {
+    setShowModal(false)
+    // setStockfish()
+    stockfishPlayer.postMessage(`position fen ${fen}`)
+    stockfishPlayer.postMessage('go depth 15')
+  }
 
   const onMove = (from, to) => {
     const moves = chess.moves({ verbose: true })
@@ -47,28 +50,21 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
 
   }
 
-  const setStockfish = () => {
-    stockfishPlayer.postMessage('setoption name Skill Level value 0')
-    stockfishPlayer.postMessage('setoption name Skill Level Maximum Error value 900')
-    stockfishPlayer.postMessage('setoption name Skill Level Probability value 10')
-  }
-
-  const stockfishMove = () => {
-    setShowModal(false)
-    // setStockfish()
-    stockfishPlayer.postMessage(`position fen ${chess.fen()}`)
-    stockfishPlayer.postMessage('go depth 15')
-  }
+  // const setStockfish = () => {
+  //   stockfishPlayer.postMessage('setoption name Skill Level value 0')
+  //   stockfishPlayer.postMessage('setoption name Skill Level Maximum Error value 900')
+  //   stockfishPlayer.postMessage('setoption name Skill Level Probability value 10')
+  // }
 
   const stockfishAnalyze = () => {
     if (chess.turn() === "w") {
       stockfishBlack.postMessage('stop')
-      stockfishWhite.postMessage(`position fen ${chess.fen()}`)
-      stockfishWhite.postMessage('go depth 23')
+      stockfishWhite.postMessage(`position fen ${fen}`)
+      stockfishWhite.postMessage(`go depth 23`)
     } else {
       stockfishWhite.postMessage('stop')
-      stockfishBlack.postMessage(`position fen ${chess.fen()}`)
-      stockfishBlack.postMessage('go depth 23')
+      stockfishBlack.postMessage(`position fen ${fen}`)
+      stockfishBlack.postMessage(`go depth 23`)
     }
   }
 
@@ -80,10 +76,12 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
     }
   }
 
+  useEffect((stockfishAnalyze), [fen, chess])
+
   const move = (from, to) => {
     chess.move({from, to});
-    setFen(chess.fen());
     setLastMove([from, to]);
+    dispatch({type: "UPDATE_GAME", game: chess, fen: chess.fen(), pgn: chess.pgn()})
     stockfishAnalyze();
   }
 
@@ -98,9 +96,9 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
   const handleMessage = (event, color) => {
     let evaluation = event.data.match(/(?<=cp )(-?\d*)/);
     let mate = event.data.match(/(?<=mate )(-?\d*)/);
-    let currDepth = event.data.match(/(?<=depth )(-?\d*)/);
-    if (currDepth !== null && currDepth[0] !== depth ) {
-      setDepth(currDepth[0])
+    let matchDepth = event.data.match(/(?<=depth )(-?\d*)/);
+    if (matchDepth !== null && matchDepth[0] !== currentDepth ) {
+      setCurrentDepth(matchDepth[0])
     }
     if (evaluation != null && chess.turn() === color) {
       setEvaluation(
@@ -118,7 +116,6 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
     const from = pendingMove[0]
     const to = pendingMove[1]
     chess.move({ from, to, promotion: e })
-    setFen(chess.fen())
     setLastMove([from, to])
     setShowModal(false)
   }
@@ -140,9 +137,11 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
     }
   }
 
-  const undoMove = () => {
-    chess.undo()
-}
+  useEffect(() => {
+    if (playerColor !== turnColor() && computerOpponent) {
+      stockfishMove()
+    }
+  })
 
   return (
       <div id="chessboard">
@@ -160,12 +159,10 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
         <div id="depth">
           <span id="depth-title">DEPTH</span> 
           <br />
-          <span id="depth-num">{depth}</span>
+          <span id="depth-num">{currentDepth}</span>
         </div>
 
-        <button id="undo-button" onClick={undoMove}>⟲</button>
-
-        <CaptureArea fen={chess.fen()}/>
+        <CaptureArea/>
 
         <PromotionPrompt promotion={promotion} showModal={showModal}/>
       </div>

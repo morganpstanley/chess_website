@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import "./EvaluationBar.css"
 
-const colors = ["antiquewhite", "black"]
+const colors = ["antiquewhite", "rgb(10,10,10,.85)"]
 
 const EvaluationBar = ({evaluationObj, playerColor}) => {
 
@@ -68,10 +68,22 @@ const EvaluationBar = ({evaluationObj, playerColor}) => {
             return symbol + Math.abs(displayNum).toFixed(1)
         }
     }
+
+    const evalStyle = () => {
+        if (playerColor === "white") {
+            return better === "w" ?
+                {color: "black", top: '94%'} :
+                {color: "white", top: '1%'}
+        } else {
+            return better=== "b" ?
+            {color: "white", top: '94%'} :
+            {color: "black", top: '1%'}
+        }
+    }
         
     return (
         <div id="evaluation-bar-holder" style={{backgroundColor: bottomColor}}>
-            <p id="eval">{displayEval()} </p>
+            <p id="eval" style={evalStyle()}>{displayEval()}</p>
             <div id="evaluation-bar" style={{height: `${vh}%`, transition: 'height 2s', backgroundColor: topColor}} />
         </div>
     );

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
 import "./CaptureArea.css"
 
 import p from "../images/pieces/wP.svg"
@@ -13,8 +14,9 @@ import N from "../images/pieces/bN.svg"
 import R from "../images/pieces/bR.svg"
 import Q from "../images/pieces/bQ.svg"
 
-const CaptureArea = ({fen}) => {
+const CaptureArea = () => {
 
+    const fen = useSelector(state => state.fen)
     const [whitePieces, setWhitePieces] = useState([]);
     const [blackPieces, setBlackPieces] = useState([]);
     const [difference, setDifference] = useState(0)
@@ -79,21 +81,16 @@ const CaptureArea = ({fen}) => {
         }
         return (
             captures.map((x, i) => {
-                switch(x) {
+                switch(x.toLowerCase()) {
                     case "p":
-                    case "P":
                         return <img src={captureArray[0]} key={i} alt="" className="captured-piece captured-pawn" />
                     case "b":
-                    case "B":
                         return <img src={captureArray[1]} key={i} alt="" className="captured-piece captured-bishop" />
                     case "n":
-                    case "N":
                         return <img src={captureArray[2]} key={i} alt="" className="captured-piece captured-knight" />
                     case "r":
-                    case "R":
                         return <img src={captureArray[3]} key={i} alt="" className="captured-piece captured-rook" />
                     case "q":
-                    case "Q":
                         return <img src={captureArray[4]} key={i} alt="" className="captured-piece captured-queen" />
                     default:
                         return "Error"  

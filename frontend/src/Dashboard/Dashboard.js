@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Chess from "chess.js"
+import React, { useState } from 'react';
 import InfoBox from "../InfoBox/InfoBox"
 import Chessboard from "../Chessboard/Chessboard"
 
@@ -8,8 +7,6 @@ import "./Dashboard.css"
 
 const Dashboard = () => {
 
-  const [chess] = useState(new Chess())
-  const [fen, setFen] = useState()
   const [computerOpponent, setComputerOpponent] = useState(false)
   const [playerColor, setPlayerColor] = useState('white')
 
@@ -26,16 +23,11 @@ const Dashboard = () => {
     <div id ="dashboard">
 
     <Chessboard 
-      chess={chess} 
       playerColor={playerColor}
       computerOpponent={computerOpponent}
-      setFen={setFen}
     />
 
     <InfoBox 
-      chess={chess}
-      fen={chess.fen()} 
-      pgn={chess.pgn()}
       changeOpponent={changeOpponent} 
       changePlayerColor={changePlayerColor} 
     />
