@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Chess from "chess.js"
 import InfoBox from "../InfoBox/InfoBox"
-import Chessboard from "../Chessboard/Chessboard"
+import Chessboard from "../Chessboard/ChessBoard"
 
 import 'react-chessground/dist/styles/chessground.css'
 import "./Dashboard.css"

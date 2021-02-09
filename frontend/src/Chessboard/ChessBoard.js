@@ -5,7 +5,7 @@ import CaptureArea from "../CaptureArea/CaptureArea"
 import PromotionPrompt from "../PromotionPrompt/PromotionPrompt"
 
 import 'react-chessground/dist/styles/chessground.css'
-import "./Chessboard.css"
+import "./chessboard.css"
 
 const stockfishPlayer = new Worker('stockfish.js')
 const stockfishWhite = new Worker('stockfish.js')
