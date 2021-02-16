@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Chess from "chess.js"
+import React from 'react';
+import { useSelector } from "react-redux"
 import InfoBox from "../InfoBox/InfoBox"
 import Chessboard from "../Chessboard/ChessBoard"
 
@@ -8,36 +8,17 @@ import "./Dashboard.css"
 
 const Dashboard = () => {
 
-  const [chess] = useState(new Chess())
-  const [fen, setFen] = useState()
-  const [computerOpponent, setComputerOpponent] = useState(false)
-  const [playerColor, setPlayerColor] = useState('white')
-
-  const changeOpponent = () => {
-    setComputerOpponent(!computerOpponent)
-    return computerOpponent
-  }
-
-  const changePlayerColor = () => {
-      setPlayerColor(playerColor === "white" ? "black" : "white")
-  }
+  const chess = useSelector(state => state.game)
 
   return (
     <div id ="dashboard">
 
-    <Chessboard 
-      chess={chess} 
-      playerColor={playerColor}
-      computerOpponent={computerOpponent}
-      setFen={setFen}
-    />
+    <Chessboard />
 
     <InfoBox 
       chess={chess}
       fen={chess.fen()} 
       pgn={chess.pgn()}
-      changeOpponent={changeOpponent} 
-      changePlayerColor={changePlayerColor} 
     />
 
     </div>

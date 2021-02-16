@@ -1,8 +1,10 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
+import { useSelector, useDispatch } from "react-redux"
 import Chessground from 'react-chessground'
 import EvaluationBar from '../EvaluationBar/EvaluationBar';
 import CaptureArea from "../CaptureArea/CaptureArea"
 import PromotionPrompt from "../PromotionPrompt/PromotionPrompt"
+import { useEffectWhen } from '../helpers'
 
 import 'react-chessground/dist/styles/chessground.css'
 import "./chessboard.css"
@@ -11,25 +13,24 @@ const stockfishPlayer = new Worker('stockfish.js')
 const stockfishWhite = new Worker('stockfish.js')
 const stockfishBlack = new Worker('stockfish.js')
 
-const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
+const Chessboard = () => {
 
   const [pendingMove, setPendingMove] = useState()
   const [lastMove, setLastMove] = useState()
   const [evaluation, setEvaluation] = useState({evaluation: 0.2, color: "w", mate: 0})
   const [depth, setDepth] = useState(0)
   const [showModal, setShowModal] = useState(false)
-  const isInitialMount = useRef(true);
 
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-   } else {
-      stockfishMove()
-   }
-  }, [playerColor])
+  const computerOpponent = useSelector(state => state.computerOpponent)
+  const playerColor = useSelector(state => state.userColor)
+  const chess = useSelector(state => state.game)
+  const fen = useSelector(state => state.fen)
+  const dispatch = useDispatch()
 
   const onMove = (from, to) => {
     const moves = chess.moves({ verbose: true })
+
+    console.log('onMove')
 
     //check if move is pawn promotion
     for (let i = 0, len = moves.length; i < len; i++) { /* eslint-disable-line */
@@ -41,20 +42,16 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
     }
 
     move(from, to)
-
-    //right now onMove is only being used after player moves, not computer, so can computer promote?
-    if (computerOpponent) {stockfishMove()};
-
   }
 
-  const setStockfish = () => {
-    stockfishPlayer.postMessage('setoption name Skill Level value 0')
-    stockfishPlayer.postMessage('setoption name Skill Level Maximum Error value 900')
-    stockfishPlayer.postMessage('setoption name Skill Level Probability value 10')
-  }
+  // const setStockfish = () => {
+  //   stockfishPlayer.postMessage('setoption name Skill Level value 0')
+  //   stockfishPlayer.postMessage('setoption name Skill Level Maximum Error value 900')
+  //   stockfishPlayer.postMessage('setoption name Skill Level Probability value 10')
+  // }
 
   const stockfishMove = () => {
-    setShowModal(false)
+    if (showModal === true) setShowModal(false);
     // setStockfish()
     stockfishPlayer.postMessage(`position fen ${chess.fen()}`)
     stockfishPlayer.postMessage('go depth 15')
@@ -81,11 +78,15 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
   }
 
   const move = (from, to) => {
+    console.log(from)
     chess.move({from, to});
-    setFen(chess.fen());
+    dispatch({type: "UPDATE_GAME", game: chess, fen: chess.fen(), pgn: chess.pgn()})
     setLastMove([from, to]);
-    stockfishAnalyze();
   }
+
+  useEffectWhen(() => {
+    stockfishAnalyze()
+  }, [fen])
 
   stockfishWhite.onmessage = (event) => {
    handleMessage(event, "w")
@@ -118,7 +119,6 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
     const from = pendingMove[0]
     const to = pendingMove[1]
     chess.move({ from, to, promotion: e })
-    setFen(chess.fen())
     setLastMove([from, to])
     setShowModal(false)
   }
@@ -140,9 +140,21 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
     }
   }
 
-  const undoMove = () => {
-    chess.undo()
+useEffectWhen (() => {
+  if (chess.game_over()) {
+    setTimeout(onGameOver, 500)
+  }
+}, [chess.game_over()])
+
+const onGameOver = () => {
+  alert('Game over, bro.')
 }
+
+useEffectWhen(() => {
+  if (turnColor() !== playerColor && computerOpponent) {
+    stockfishMove()
+  }
+}, [lastMove, computerOpponent, playerColor])
 
   return (
       <div id="chessboard">
@@ -155,6 +167,7 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
           lastMove={lastMove}
           fen={chess.fen()}
           onMove={onMove}
+          animation={{duration: 300}}
         />
 
         <div id="depth">
@@ -162,8 +175,6 @@ const Chessboard = ({chess, playerColor, computerOpponent, setFen}) => {
           <br />
           <span id="depth-num">{depth}</span>
         </div>
-
-        <button id="undo-button" onClick={undoMove}>⟲</button>
 
         <CaptureArea fen={chess.fen()}/>
 

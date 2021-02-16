@@ -1,28 +1,45 @@
 import Chess from 'chess.js';
 
 const initialState = {
+    game: new Chess(),
     fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-    game: new Chess()
+    pgn: "",
+    depth: 15,
+    computerOpponent: false,
+    userColor: "white"
 }
 
 export default function reducer(state = initialState, action) {
 
-    console.log(state)
-
     switch (action.type) {
-
-        case 'UPDATE_FEN': 
-            return {
-                ...state,
-                fen: action.fen
-            }
 
         case 'UPDATE_GAME':
             return {
                 ...state,
-                game: action.game
+                game: action.game,
+                fen: action.fen,
+                pgn: action.pgn
             }
-      default:        
-        return state
+        
+        case "SET_STOCKFISH_DEPTH":
+            return {
+                ...state,
+                depth: action.depth
+            }
+
+        case "SET_OPPONENT":
+            return {
+                ...state,
+                computerOpponent: action.computerOpponent
+            }
+
+        case "SET_USER_COLOR":
+            return {
+                ...state,
+                userColor: action.userColor
+            }
+
+        default:        
+            return state
     }
   }

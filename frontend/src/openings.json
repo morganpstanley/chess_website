@@ -3148,7 +3148,7 @@
     "eco": "A10",
     "fen": "rnbqkbnr/pppppppp/8/8/2P5/8/PP1PPPPP/RNBQKBNR b KQkq",
     "moves": "1. c4",
-    "comment": "English Opening"
+    "comment": "White's 4th most popular opening. The English Opening is flexible and can lead to many different lines. For newer players, the main advantage would probably be avoiding <b> 1.e4 <\/b> and <b> 1.d4 <\/b> and with them most newer players' knowledge of theory."
   },
   {
     "name": "English Opening: 2. g4",
@@ -5356,7 +5356,8 @@
     "name": "Giuoco Piano",
     "eco": "C50",
     "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5",
+    "comment": "B"
   },
   {
     "name": "Global Opening",
@@ -6257,14 +6258,14 @@
     "eco": "C50",
     "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4",
-    "comment": "The Italian Game. White develops their bishop and puts pressure on black's weak f7 pawn. Black's most popular moves are either Bc5, the Giuoco Piano; or Nf6, the Two Knights Defense. Newer players occasionally respond with h6, the Anti-Fried Liver Defense, but this is a fairly passive move which allows white to take control of the center."
+    "comment": "White develops their bishop and puts pressure on black's weak f7 pawn. The resulting position, the Italian Game, is good for players who enjoy playing solid lines with few suprises, while still having the decision to decide between an open or closed game."
   },
   {
     "name": "Italian Game: Anti-Fried Liver Defense",
     "eco": "C55",
     "fen": "r1bqkbnr/pppp1pp1/2n4p/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 h6",
-    "comment": "The Anti-Fried Liver Defense. Black actively prevents white from moving their knight to g5. Though not a terrible move, black loses a tempo and allows white to quickly attack and gain control of the center. A better response would be either Bc5, the Giuoco Piano, or to allow the Knight Attack by playing Nf6 and quickly defanging it with 4....d4 5. exd5 Na5! (instead of the natural-looking Nxd5).",
+    "comment": "Black actively prevents white from moving their knight to g5. Though not a terrible move, black loses a tempo and allows white to quickly attack and gain control of the center. A better response would be either <b> 3...Bc5 <\/b>, the Giuoco Piano, or to allow the Knight Attack by playing <b> 3..Nf6 <\/b> and quickly defanging it with <b> 4...d4 5. exd5 Na5! <\/b> (instead of the natural-looking <b> 5...Nxd5 <\/b>).",
     "analysis": "bad"
   },
   {
@@ -7005,7 +7006,7 @@
     "eco": "C57",
     "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p1N1/2B1P3/8/PPPP1PPP/RNBQK2R b KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5",
-    "comment": "White takes advantage of 3...Nf6 to move to the g5 square previously guarded by the Queen. If black isn't careful, white will then play Nxf7 forking both the queen and the rook."
+    "comment": "White takes advantage of <b> 3...Nf6 <\/b> to move to the g5 square previously guarded by the Queen. If black isn't careful, white will then play <b> 5. Nxf7 <\/b> forking both the queen and the rook."
   },
   {
     "name": "Italian Game: Two Knights Defense, Knight Attack, Normal Variation",
@@ -7020,7 +7021,7 @@
     "eco": "C57",
     "fen": "r1bqkb1r/ppp2ppp/2n2n2/3Pp1N1/2B5/8/PPPP1PPP/RNBQK2R b KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5",
-    "comment": "The only good move. White is forced to exchange pawns or move their bishop while losing their e-pawn and losing tempo.",
+    "comment": "White is forced to exchange pawns or move their bishop while losing their e-pawn and losing tempo.",
     "analysis": "forced"
   },
   {
@@ -7114,7 +7115,7 @@
     "eco": "C57",
     "fen": "r1bqkb1r/ppp2ppp/5n2/n2Pp1N1/2B5/8/PPPP1PPP/RNBQK2R w KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Nf6 4. Ng5 d5 5. exd5 Na5",
-    "comment": "New players will often play Nxd5, eager to win back a pawn, but quickly regret it. This is the accurate response. Black moves their knight out of danger while also attacking white's bishop.",
+    "comment": "New players will often play <b> 5...Nxd5 <\/b>, eager to win back a pawn, but quickly regret it. This is the better response. Black moves their knight out of danger while also attacking white's bishop.",
     "analysis": "forced"
   },
   {
@@ -9192,7 +9193,7 @@
     "eco": "C40",
     "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq",
     "moves": "1. e4 e5 2. Nf3",
-    "comment": "By far white's most popular response after 1. e4 e5. 2. Nf3 does several things; It attacks the pawn on e5 and prepares d4, develops the king's knight to it's most active square, and removes one of the two pieces preventing the king from castling kingside."
+    "comment": "By far white's most popular response after <b> 1. e4 e5. 2. Nf3 <\/b> does several things; It attacks the pawn on e5 and prepares d4 at some point, develops the king's knight to it's most active square, and removes one of the two pieces preventing the king from castling kingside."
   },
   {
     "name": "King's Knight Opening: Konstantinopolsky",
@@ -9205,21 +9206,21 @@
     "eco": "C44",
     "fen": "r1bqkbnr/pppp1ppp/2n5/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6",
-    "comment": "Because black is behind a tempo, black's most popular response to 2. Nf3 is to move their knight to c6 to both develop and protect their e-pawn."
+    "comment": "Because black is behind a tempo, black's most popular response to <b> 2. Nf3 <\/b> is to move their knight to c6 to both develop and protect their e-pawn."
   },
   {
     "name": "King's Pawn",
     "eco": "B00",
     "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq",
     "moves": "1. e4",
-    "comment": "According to Bobby Fischer e4 is \"Best by test.\" Compared to the second most popular move, d4, e4 often leads to more open positions and is therefore great for people who either want to avoid the complications of closed positions or want to be aggressive. Due to the support of the queen (and oftentimes the knight on f3 or f6) both will still be able to play d4 or d5, whereas after 1. d4, the most common responses, d5 and Nf6, prevent any current thoughts about e4."
+    "comment": "According to Bobby Fischer <b> 1. e4 <\/b> is \"Best by test.\" Compared to the second most popular move, <b> 1. d4 <\/b>, <b> 1. e4 <\/b> often leads to more open positions and is therefore great for people who either want to avoid the complications of closed positions or want to be aggressive."
   },
   {
     "name": "King's Pawn Game",
     "eco": "C20",
     "fen": "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq",
     "moves": "1. e4 e5",
-    "comment": "One of black's most popular responses along with the Sicilian Defense(c5). e5 is good for most of the same reasons e4 is; black claims their share of the center and opens up lines for their queen and bishop."
+    "comment": "Blacks most popular response at the amateur level. <b> 1...e5 <\/b> is good for most of the same reasons 1. e4 is; black claims their share of the center and opens up lines for their queen and bishop."
   },
   {
     "name": "King's Pawn Game: Alapin Opening",
@@ -11140,13 +11141,14 @@
     "eco": "C41",
     "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/4P3/5N2/PPPP1PPP/RNBQKB1R w KQkq",
     "moves": "1. e4 e5 2. Nf3 d6",
-    "comment": "d6"
+    "comment": "A somewhat passive but solid move defending the pawn on e5 and opening up the diagonal for the bishop. White will most often reply with <b> 3.d4 <\/b> and force a trade of pawns, opening up the position somewhat and giving white a small lead in development."
   },
   {
     "name": "Philidor Defense, 2. Nf3 d6 3. d4",
     "eco": "C41",
     "fen": "rnbqkbnr/ppp2ppp/3p4/4p3/3PP3/5N2/PPP2PPP/RNBQKB1R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 d6 3. d4"
+    "moves": "1. e4 e5 2. Nf3 d6 3. d4",
+    "comment": "White's d-pawn takes control of the center with support of the knight on f3."
   },
   {
     "name": "Philidor Defense, 2. Nf3 d6 3. Bc4",
@@ -11188,13 +11190,15 @@
     "name": "Philidor Defense: Exchange Variation",
     "eco": "C41",
     "fen": "rnbqkbnr/ppp2ppp/3p4/8/3pP3/5N2/PPP2PPP/RNBQKB1R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 d6 3. d4 exd4"
+    "moves": "1. e4 e5 2. Nf3 d6 3. d4 exd4",
+    "comment": "Black accepts an exchange of pawns and allows white to solidify their control over the center. Though black's position is not objectively worse, they must be careful to not play to passively or allow white to get too far ahead in development due to their superior space."
   },
   {
     "name": "Philidor Defense: Exchange Variation, 3. d4 exd4 4. Nxd4",
     "eco": "C41",
     "fen": "rnbqkbnr/ppp2ppp/3p4/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 d6 3. d4 exd4 4. Nxd4"
+    "moves": "1. e4 e5 2. Nf3 d6 3. d4 exd4 4. Nxd4",
+    "comment": "White recaptures with their knight. Retaking with the Queen would allow black to develop their Queen's knight with tempo at their discretion."
   },
   {
     "name": "Philidor Defense: Exchange Variation, 3. d4 exd4 4. Nxd4 Nf6",
@@ -12070,13 +12074,16 @@
     "name": "Queen's Gambit",
     "eco": "D06",
     "fen": "rnbqkbnr/ppp1pppp/8/3p4/2PP4/8/PP2PPPP/RNBQKBNR b KQkq",
-    "moves": "1. d4 d5 2. c4"
+    "moves": "1. d4 d5 2. c4",
+    "comment": "White grabs another chunk of space while seemingly offers black a free pawn. Though tempting, most players avoid accepting the pawn and reply with the Queen's Gambit Declined  (<b> 2...e6 <\/b>) or the Slav Defense (<b> 2...c6 <\/b>) or instead. Most newer players should follow suit. The reason for avoid the pawn is that black loses any presence and/or pressure they had in the middle which white will quickly take advantage of, and that as soon as white pushes their e-pawn, their bishop will soon after retake on c4. Though black could stubbornly defend their pawn, this leads to many sub-optimal moves that white can quickly punish. For this reason many people don't really consider this move a true gambit."
   },
   {
     "name": "Queen's Gambit Accepted",
     "eco": "D20",
     "fen": "rnbqkbnr/ppp1pppp/8/8/2pP4/8/PP2PPPP/RNBQKBNR w KQkq",
-    "moves": "1. d4 d5 2. c4 dxc4"
+    "moves": "1. d4 d5 2. c4 dxc4",
+    "comment": "Black accepts the gambit and prepares for white to quickly push in the center. Though not a terrible move, black should have a good understanding of the theory and resulting positions.",
+    "analysis": "bad"
   },
   {
     "name": "Queen's Gambit Accepted, 2. c4 dxc4 3. Nf3 Nf6",
@@ -12376,7 +12383,8 @@
     "name": "Queen's Gambit Declined",
     "eco": "D30",
     "fen": "rnbqkbnr/ppp2ppp/4p3/3p4/2PP4/8/PP2PPPP/RNBQKBNR w KQkq",
-    "moves": "1. d4 d5 2. c4 e6"
+    "moves": "1. d4 d5 2. c4 e6",
+    "comment": "Instead of accepting the gambit, black reinforces their own pawn while opening up a diagonal for the bishop and queen. Compared to the Slav Defense (<b> 2...c6 <\/b>), the Queen's Gambit Declined is probably slightly more passive, but also slightly more sound. A less abstract difference is that the Queen's Gambit Declined blocks in it's light-square bishop, but allows it's queen-side knight to develop to it's best square, while the Slav Defense does the opposite; it prevents it's knight from developing to it's natural square, but allows the light-square bishop more freedom."
   },
   {
     "name": "Queen's Gambit Declined, 5. Bg5 Nbd7 6. e3",
@@ -13697,7 +13705,7 @@
     "eco": "A40",
     "fen": "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq",
     "moves": "1. d4",
-    "comment": "Queen's pawn"
+    "comment": "White's second most popular opening. Compared to <b> 1. e4 <\/b>, <b> 1. d4 <\/b> will usually lead to more closed positions where both players will spend time manuevering their pieces in anticipation of the future pawn breaks."
   },
   {
     "name": "Queen's Pawn, 1... d6",
@@ -13709,7 +13717,8 @@
     "name": "Queen's Pawn Game",
     "eco": "D00",
     "fen": "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq",
-    "moves": "1. d4 d5"
+    "moves": "1. d4 d5",
+    "comment": "By playing <b> 1. d4 <\/b> white has already declared that they plan on a more closed, positional game. <b> 1...d5 <\/b> is a solid move thats only really notable in that black is stating they are comfortable playing into the Queen's Gambit (<b> 2. c4 <\/b>) and it's lines."
   },
   {
     "name": "Queen's Pawn Game, 2. e3",
@@ -14507,13 +14516,15 @@
     "name": "Ruy Lopez",
     "eco": "C60",
     "fen": "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5",
+    "comment": "By attacking black's knight, white indirectly attacks black's pawn by threating to remove it's only defender. The Ruy Lopez is a very popular opening with a lot of theory and different lines available to both sides."
   },
   {
-    "name": "Ruy Lopez, 2. Nf3 Nc6 3. Bb5 a6",
+    "name": "Ruy Lopez: Morphy Defense",
     "eco": "C70",
     "fen": "r1bqkbnr/1ppp1ppp/p1n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6",
+    "comment": "Black's most popular response. Black forces white to make a decision and either take the knight or retreat."
   },
   {
     "name": "Ruy Lopez Defense, Halloween Attack",
@@ -15116,10 +15127,11 @@
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 O-O 8. c3 d6 9. h3 Na5 10. Bc2 c6 11. d4 Qc7"
   },
   {
-    "name": "Ruy Lopez: Columbus Variation",
+    "name": "Ruy Lopez: Morphy Defense, Columbus Variation",
     "eco": "C68",
     "fen": "r1bqkbnr/1ppp1ppp/p1n5/4p3/B3P3/5N2/PPPP1PPP/RNBQK2R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4",
+    "comment": "White retreats their bishop while maintaining the pressure on the knight."
   },
   {
     "name": "Ruy Lopez: Cozio Defense",
@@ -15893,7 +15905,17 @@
     "name": "Scandinavian Defense",
     "eco": "B01",
     "fen": "rnbqkbnr/ppp1pppp/8/3p4/4P3/8/PPPP1PPP/RNBQKBNR w KQkq",
-    "moves": "1. e4 d5"
+    "moves": "1. e4 d5",
+    "comment": "Black immediately attacks white's e-pawn and after <b> 2. d5 <\/b> black will most likely recapture with their queen. An interesting opening, especially for those who want to avoid the deep theory that the Sicilian Defense (<b> 1...c5 <\/b>) and King's Pawn Game (<b> 1...e5 <\/b>) present, and the closed, cramp positions that other responses may lead to. But newer players may find themselves overwhelmed or down a tempo after retreating their queen one too many times, nor does the Scandinavian Defense teach good basic opening principles. An interesting fact is that the Scandinavian Defense is the oldest recorded opening by black in modern chess, first mentioned in the 15th century!",
+    "analysis": "bad"
+  },
+  {
+    "name": "Scandinavian Defense",
+    "eco": "B01",
+    "fen": "rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq",
+    "moves": "1. e4 d5 2. exd5",
+    "comment": "White's only good move is to exchange pawns. Though white may be intimidated by black's queen coming out so early and aggressively, black's queen is more of a liability as white will be able to develop pieces with tempo while attacking it.",
+    "analysis": "forced"
   },
   {
     "name": "Scandinavian Defense: 2. b3",

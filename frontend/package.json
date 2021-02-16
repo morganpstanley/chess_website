@@ -12,6 +12,7 @@
     "chess.js": "^0.11.0",
     "chessboardjsx": "^2.4.2",
     "cm-chessboard": "^3.3.7",
+    "html-react-parser": "^1.2.4",
     "ii-react-chessboard": "^2.0.3",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",

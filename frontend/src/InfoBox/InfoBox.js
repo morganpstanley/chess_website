@@ -1,36 +1,49 @@
-import { useState, useEffect } from "react"
+import { React, useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import parse from 'html-react-parser';
 import json from "../openings.json"
 import chessBookWithPawn from "../images/chess-logo.svg"
 import openBook from "../images/open-book.svg"
 import chessGear from "../images/chess-gear.svg"
+import img from "../images/strategy.svg"
 import Options from "../Options/Options"
 
 import "./InfoBox.css"
 
-const InfoBox = ({chess, fen, pgn, changeOpponent, changePlayerColor}) => {
+const InfoBox = ({changeOpponent, changePlayerColor}) => {
 
+    const chess = useSelector(state => state.game);
+    const pgn = useSelector(state => state.pgn);
+    const fen = useSelector(state => state.fen);
     const [opening, setOpening] = useState()
     const [eco, setEco] = useState()
-    const [comment, setComment] = useState()
+    const [comment, setComment] = useState('')
     const [annotated, setAnnotated] = useState()
     const [options, showOptions] = useState(false)
+    const dispatch = useDispatch()
+
+    const onMoveClick = (move) => {
+        chess.move(move)
+        dispatch({type: "UPDATE_GAME", game: chess, fen: chess.fen(), pgn: chess.pgn()})
+
+    }
 
     useEffect(() => {
         let fenArray = fen.split(' ')
         let fenAgain = fenArray[0] + " " + fenArray[1] + " " + fenArray[2]
-        let posistion = json.find(opening => opening.fen === fenAgain)
+        let position = json.find(opening => opening.fen === fenAgain)
 
-        if (posistion && posistion.name !== posistion) {
-            setOpening(posistion.name)
-            setEco(posistion.eco)
+        if (position && position.name !== position) {
+            setOpening(position.name)
+            setEco(position.eco)
         }
 
-        if (posistion && posistion.comment) {
-            setComment(posistion.comment)
-        } else if (posistion === undefined && comment !== "") {
+        if (position && position.comment) {
+            setComment(position.comment)
+        } else if (position === undefined && comment !== "") {
             setComment("")
         }
-    }, [chess, fen, opening, eco, comment, annotated]);
+    }, [fen, opening, eco, comment, annotated]);
 
     useEffect(() => {
         const turn = chess.turn() === "w" ? 2 : 1
@@ -44,7 +57,7 @@ const InfoBox = ({chess, fen, pgn, changeOpponent, changePlayerColor}) => {
             && openingsLength - pgnLength === turn
             && opening.comment
         }))
-    }, [pgn, chess])
+    }, [chess, pgn])
     
     const annotatedMoves = () => {
         return annotated?.map(opening => {
@@ -59,7 +72,14 @@ const InfoBox = ({chess, fen, pgn, changeOpponent, changePlayerColor}) => {
             }
             const arr = opening.moves.split(' ')
             const move = arr[arr.length - 1]
-            return <button key={opening.name} style={{backgroundColor:color, borderColor:color}} className="annotated-move">{move}</button>
+            return <button 
+                        key={opening.name} 
+                        style={{backgroundColor:color, borderColor:color}}
+                        className="annotated-move"
+                        onClick={() => onMoveClick(move)}
+                    >
+                        {move}
+                    </button>
         })
     }
 
@@ -69,18 +89,23 @@ const InfoBox = ({chess, fen, pgn, changeOpponent, changePlayerColor}) => {
                 <div>
                     <Options 
                     changeOpponent={changeOpponent} 
-                    changePlayerColor={changePlayerColor}/> 
+                    changePlayerColor={changePlayerColor}/>
+                    <img id="commentary-background-image" src={img} alt="open book" />
                 </div>
             )
         } else {
             return (
-                <div>{comment}</div>
+                <div>
+                    {parse(comment)}
+                    <img id="commentary-background-image" src={openBook} alt="open book" />
+                </div>
             )
         }
     }
 
     const undoMove = () => {
         chess.undo()
+        dispatch({type: "UPDATE_GAME", game: chess, fen: chess.fen(), pgn: chess.pgn()})
     }
 
     return (
@@ -97,8 +122,10 @@ const InfoBox = ({chess, fen, pgn, changeOpponent, changePlayerColor}) => {
 
             <div id="commentary">
                 {currentInfo()}
-                <br />
-                <img id="commentary-background-image" src={openBook} alt="open book" />
+            </div>
+
+            <div>
+                <button id="undo-button" onClick={undoMove}>⟲</button>
             </div>
 
             <div id="continuations">
