@@ -61,21 +61,11 @@ const InfoBox = ({changeOpponent, changePlayerColor}) => {
     
     const annotatedMoves = () => {
         return annotated?.map(opening => {
-            let color;
-            if (opening?.analysis === "bad") {
-                color = "rgb(255, 99, 110)"
-            } else if (opening?.analysis === "forced") {
-                color = "cornflowerblue"
-            }              
-            else {
-                color = "seagreen"
-            }
             const arr = opening.moves.split(' ')
             const move = arr[arr.length - 1]
             return <button 
                         key={opening.name} 
-                        style={{backgroundColor:color, borderColor:color}}
-                        className="annotated-move"
+                        className={`annotated-move ${opening?.analysis || "normal"}`}
                         onClick={() => onMoveClick(move)}
                     >
                         {move}
@@ -90,7 +80,6 @@ const InfoBox = ({changeOpponent, changePlayerColor}) => {
                     <Options 
                     changeOpponent={changeOpponent} 
                     changePlayerColor={changePlayerColor}/>
-                    <img id="commentary-background-image" src={img} alt="open book" />
                 </div>
             )
         } else {

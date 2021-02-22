@@ -25,12 +25,11 @@ const Chessboard = () => {
   const playerColor = useSelector(state => state.userColor)
   const chess = useSelector(state => state.game)
   const fen = useSelector(state => state.fen)
+  const computerLevel = useSelector(state => state.difficulty)
   const dispatch = useDispatch()
 
   const onMove = (from, to) => {
     const moves = chess.moves({ verbose: true })
-
-    console.log('onMove')
 
     //check if move is pawn promotion
     for (let i = 0, len = moves.length; i < len; i++) { /* eslint-disable-line */
@@ -44,15 +43,14 @@ const Chessboard = () => {
     move(from, to)
   }
 
-  // const setStockfish = () => {
-  //   stockfishPlayer.postMessage('setoption name Skill Level value 0')
-  //   stockfishPlayer.postMessage('setoption name Skill Level Maximum Error value 900')
-  //   stockfishPlayer.postMessage('setoption name Skill Level Probability value 10')
-  // }
+  useEffectWhen(() => {
+    let level = computerLevel === 1 ? 0 : (computerLevel - 1) * 5
+    stockfishPlayer.postMessage(`setoption name Skill Level value ${level}`)
+    console.log(level)
+  }, [computerLevel])
 
   const stockfishMove = () => {
     if (showModal === true) setShowModal(false);
-    // setStockfish()
     stockfishPlayer.postMessage(`position fen ${chess.fen()}`)
     stockfishPlayer.postMessage('go depth 15')
   }
@@ -78,7 +76,6 @@ const Chessboard = () => {
   }
 
   const move = (from, to) => {
-    console.log(from)
     chess.move({from, to});
     dispatch({type: "UPDATE_GAME", game: chess, fen: chess.fen(), pgn: chess.pgn()})
     setLastMove([from, to]);

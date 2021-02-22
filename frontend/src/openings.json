@@ -5357,7 +5357,7 @@
     "eco": "C50",
     "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/5N2/PPPP1PPP/RNBQK2R w KQkq",
     "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5",
-    "comment": "B"
+    "comment": "Black reinforces its control over the d4 square and puts pressure on f2. White has an important choice at this point; if white plays <b>3. c3<\/b> they apply more pressure to the d4 square, threatening to push d4 and take control of the center at any time. This often leads to open positions with many opportunites for aggressive attacks and tactics. <b>4. d3<\/b> leads to the Guioco Pianissimo, (\"Very Quite Game\"), where white is planning on a slower, more positional game. Black's goal in most cases is to develop it's knight to f6 and then castle."
   },
   {
     "name": "Global Opening",
@@ -6392,7 +6392,8 @@
     "name": "Italian Game: Evans Gambit",
     "eco": "C51",
     "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4",
+    "comment": "The aggressive Evan's Gambit. White offers black a free pawn in return for an aggressive attack. If black accepts the gambit—and white has a decent understanding of the position while black does not—white can often crush black before black has time to recover. Black can easily decline the gambit though with little repercussions."
   },
   {
     "name": "Italian Game: Evans Gambit, 5. c3 Ba5 6. O-O d6",
@@ -6410,7 +6411,16 @@
     "name": "Italian Game: Evans Gambit Accepted",
     "eco": "C51",
     "fen": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4",
+    "comment": "Black accepts the gambit. White will then play <b>5. c3<\/b> forcing back the bishop. In the next few moves white may attack the center with d4, move their queen to b3 to build a battery targeting f7, and/or put their bishop on a3 further pressuring black's undeveloped king side."
+  },
+  {
+    "name": "Italian Game: Evans Gambit Accepted",
+    "eco": "C51",
+    "fen": "r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq",
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3",
+    "comment": "White forces black to retreat their bishop while preparing d4 and opening up the diagonal for their queen.",
+    "analysis": "forced"
   },
   {
     "name": "Italian Game: Evans Gambit Declined",
@@ -6590,7 +6600,8 @@
     "name": "Italian Game: Evans Gambit, Main Line",
     "eco": "C52",
     "fen": "r1bqk1nr/pppp1ppp/2n5/b3p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5",
+    "comment": "Black retreats while still pressuring the c3 pawn, which will be pinned if white plays the usual response <b>6. d4<\/b>. Though this is often considered the best response, an important drawback, especially for newer players, is that black has relinquished control of the important a3-f8 diagonal which white can take advantage of by playing Ba3 at some point."
   },
   {
     "name": "Italian Game: Evans Gambit, Mayet Defense",
@@ -6698,7 +6709,8 @@
     "name": "Italian Game: Giuoco Pianissimo",
     "eco": "C50",
     "fen": "r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/3P1N2/PPP2PPP/RNBQK2R b KQkq",
-    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3"
+    "moves": "1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. d3",
+    "comment": "White chooses a more positional game. There are many options for white in the next few turns. Because of this, the moves noted at the bottom reflect the ideas of the position rather than \"what you should play next\"."
   },
   {
     "name": "Italian Game: Giuoco Pianissimo, Canal Variation",

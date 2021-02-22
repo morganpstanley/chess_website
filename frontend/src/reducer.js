@@ -6,10 +6,13 @@ const initialState = {
     pgn: "",
     depth: 15,
     computerOpponent: false,
+    difficulty: 1,
     userColor: "white"
 }
 
 export default function reducer(state = initialState, action) {
+
+    console.log(state)
 
     switch (action.type) {
 
@@ -30,13 +33,19 @@ export default function reducer(state = initialState, action) {
         case "SET_OPPONENT":
             return {
                 ...state,
-                computerOpponent: action.computerOpponent
+                computerOpponent: action.payload
+            }
+
+        case "SET_COMPUTER_DIFFICULTY":
+            return {
+                ...state,
+                difficulty: action.payload
             }
 
         case "SET_USER_COLOR":
             return {
                 ...state,
-                userColor: action.userColor
+                userColor: action.payload
             }
 
         default:        

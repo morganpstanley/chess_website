@@ -50,6 +50,7 @@
 }
 
 .annotated-move {
+    cursor: pointer;
     font-size: 20px;
     background-color: seagreen;
     border: 4px seagreen solid;
@@ -57,7 +58,32 @@
     margin: 3px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: antiquewhite;
+    color: white;
+}
+
+button.annotated-move.normal:hover {
+    background-color: rgb(45, 110, 73);
+    border-color: rgb(8, 112, 53);
+}
+
+.annotated-move.bad {
+    background-color: #FF636E;
+    border-color: #FF636E;
+}
+
+.annotated-move.bad:hover {
+    background-color: #ec545e;
+    border-color: #ec545e;
+}
+
+.annotated-move.forced {
+    background-color: cornflowerblue;
+    border-color: cornflowerblue;
+}
+
+.annotated-move.forced:hover {
+    background-color: rgb(69, 120, 216);
+    border-color: rgb(69, 120, 216);
 }
 
 #continuations {
@@ -74,6 +100,7 @@
 }
 
 button#undo-button {
+    cursor: pointer;
     height: 40px;
     width: 60px;
     font-size: 1.2rem;
@@ -81,6 +108,10 @@ button#undo-button {
     border: none;
     position: absolute;
     bottom: 120px;
+}
+
+button#undo-button:hover {
+    background-color: #ec545e;
 }
 
 @media only screen and (max-width: 900px) {
