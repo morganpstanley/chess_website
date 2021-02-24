@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.26701767.chunk.css",
+    "main.js": "/static/js/main.2efca578.chunk.js",
+    "main.js.map": "/static/js/main.2efca578.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7f3b66ea.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7f3b66ea.js.map",
+    "static/css/2.0d9922dd.chunk.css": "/static/css/2.0d9922dd.chunk.css",
+    "static/js/2.5c4cf630.chunk.js": "/static/js/2.5c4cf630.chunk.js",
+    "static/js/2.5c4cf630.chunk.js.map": "/static/js/2.5c4cf630.chunk.js.map",
+    "static/js/3.1f097613.chunk.js": "/static/js/3.1f097613.chunk.js",
+    "static/js/3.1f097613.chunk.js.map": "/static/js/3.1f097613.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.0d9922dd.chunk.css.map": "/static/css/2.0d9922dd.chunk.css.map",
+    "static/css/main.26701767.chunk.css.map": "/static/css/main.26701767.chunk.css.map",
+    "static/js/2.5c4cf630.chunk.js.LICENSE.txt": "/static/js/2.5c4cf630.chunk.js.LICENSE.txt",
+    "static/media/chessground.css": "/static/media/wR.ad69d2b3.svg",
+    "static/media/bB.9ce7c272.svg": "/static/media/bB.9ce7c272.svg",
+    "static/media/chess-gear.61562b26.svg": "/static/media/chess-gear.61562b26.svg",
+    "static/media/chess-logo.78040a62.svg": "/static/media/chess-logo.78040a62.svg",
+    "static/media/open-book.2a9fb61b.svg": "/static/media/open-book.2a9fb61b.svg",
+    "static/media/strategy.135ddd78.svg": "/static/media/strategy.135ddd78.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f3b66ea.js",
+    "static/css/2.0d9922dd.chunk.css",
+    "static/js/2.5c4cf630.chunk.js",
+    "static/css/main.26701767.chunk.css",
+    "static/js/main.2efca578.chunk.js"
+  ]
+}
