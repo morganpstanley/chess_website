@@ -1,7 +1,7 @@
 {
   "name": "chess_battery",
   "version": "0.1.0",
-  "homepage": "morganpstanley.github.io/chessbattery",
+  "homepage": "morganpstanley.github.io/chess_website",
   "private": true,
   "dependencies": {
     "@chrisoakman/chessboardjs": "^1.0.0",
