@@ -9,9 +9,9 @@ import { useEffectWhen } from '../helpers'
 import 'react-chessground/dist/styles/chessground.css'
 import "./chessboard.css"
 
-const stockfishPlayer = new Worker('stockfish.js')
-const stockfishWhite = new Worker('stockfish.js')
-const stockfishBlack = new Worker('stockfish.js')
+const stockfishPlayer = new Worker('/stockfish.js')
+const stockfishWhite = new Worker('/stockfish.js')
+const stockfishBlack = new Worker('/stockfish.js')
 
 const Chessboard = () => {
 
