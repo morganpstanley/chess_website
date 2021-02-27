@@ -1,0 +1,108 @@
+/* The ribbon */
+.ribbon {
+    cursor: pointer;
+    height: 75px;
+    transition: height .5s;
+    width: 60px;
+    padding: 20px 0;
+    position: absolute;
+    top: 61px;
+    right: 50px;
+    text-align: center;
+    border-top-left-radius: 3px;
+    background: rgb(255, 99, 110);
+    border: 0px;
+   }
+   .ribbon:before {
+    height: 0;
+    width: 0;
+    right: -5.5px;
+    top: 0.1px;
+    border-bottom: 6px solid darkred;
+    border-right: 6px solid transparent;
+   }
+   .ribbon:before, .ribbon:after {
+     content: "";
+     position: absolute;
+   }
+   .ribbon:after {
+     height: 0;
+     width: 0;
+     bottom: -29.5px;
+     left: 0;
+     border-left: 30px solid rgb(255, 99, 110);
+     border-right: 30px solid rgb(255, 99, 110);
+     border-bottom: 30px solid transparent;
+   }
+
+.options-text {
+    margin-left: 10px;
+    font-size: 1.3rem;
+}
+
+.ribbon:hover {
+  background-color: #ec545e;
+}
+
+.ribbon:hover:after {
+  border-left-color: #ec545e;
+  border-right-color: #ec545e;
+}
+
+.ribbon.active {
+height: 350px;
+transition: height .5s;
+}
+
+button:hover .ribbon {
+  height: 200px;
+  transition: .5s;
+}
+
+* {
+	outline: none;
+}
+
+.switch-field {
+	display: flex;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.switch-field input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.switch-field label {
+	background-color: white;
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 14px;
+	line-height: 1;
+	text-align: center;
+	padding: 8px 26px;
+	margin-right: -1px;
+	transition: all 0.1s ease-in-out;
+}
+
+.switch-field label:hover {
+	cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  color: white;
+	background-color: seagreen;
+  box-shadow: inset 0px 1px 3px 1px rgb(19, 102, 55);
+}
+
+.switch-field label:first-of-type {
+	border-radius: 20px 0 0 20px;
+}
+
+.switch-field label:last-of-type {
+	border-radius: 0 20px 20px 0;
+}
