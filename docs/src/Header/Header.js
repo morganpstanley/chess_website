@@ -1,10 +1,14 @@
 import "./Header.css"
-import logo from "../images/chess-trek.png";
+import lightningBolt from "../images/lightning.svg";
 
 const Header = () => {
     return (
         <div id="header">
-            <img src={logo} id="logo-image" alt="logo" />
+            <div id="logo">
+                <img src={lightningBolt} id="logo-image" alt="lighting-bolt" />
+                <span id="chess">CHESS</span>
+                <span id="battery">BATTERY</span>
+            </div>
         </div>
     )
 }

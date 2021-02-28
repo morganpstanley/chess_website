@@ -1,6 +1,6 @@
 #infobox {
     height: 512px;
-    width: 52vw;
+    width: 45vw;
     background-color: antiquewhite;
     margin: 20px;
     right: 0px;
@@ -115,6 +115,9 @@ button#undo-button:hover {
 }
 
 @media only screen and (max-width: 900px) {
+    /* body {
+        overflow: visible;
+    } */
     #infobox {
         height: 38vw;
         width: 80vw;
