@@ -118,7 +118,9 @@ const InfoBox = ({changeOpponent, changePlayerColor}) => {
             </div>
 
             <div id="continuations">
-                <span id="continuations-title">Annotated Continuations:</span> <br />
+                <div id="continuations-title">
+                    <span>Annotated Continuations:</span><span id="move-legend"> <span id="good">⬤</span> good <span id="forced">⬤</span> forced <span id="unadviced">⬤</span> unadviced</span> <br />
+                </div>
                 {annotatedMoves()}
             </div>
 

@@ -1,5 +1,12 @@
 [
   {
+    "name": "",
+    "eco": "",
+    "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq",
+    "moves": "",
+    "comment": "Welcome to ChessBattery! This site is designed to help you learn the basic principles and ideas behind certain chess openings. Because there are too many moves to go over them all, only a few in any line, listed below, are discussed. Make a move or click on one of the moves below to start."
+  },
+  {
     "name": "Alekhine Defense",
     "eco": "B02",
     "fen": "rnbqkb1r/pppppppp/5n2/8/4P3/8/PPPP1PPP/RNBQKBNR w KQkq",

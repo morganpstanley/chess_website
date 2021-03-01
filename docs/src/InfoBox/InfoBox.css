@@ -93,7 +93,7 @@ button.annotated-move.normal:hover {
 }
 
 #continuations-title {
-    width: 200px;
+    width: 500px;
     position: absolute;
     bottom: 50px;
     font-style: italic;
@@ -148,4 +148,20 @@ button#undo-button:hover {
         height: 75vw;
         min-height: 320px;
     }
+}
+
+#move-legend {
+    font-style: normal;
+}
+
+span#forced {
+    color: cornflowerblue;
+}
+
+span#good {
+    color: seagreen;
+}
+
+span#unadviced {
+    color: #FF636E;
 }
