@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useEffectWhen } from "../helpers"
 import "./EvaluationBar.css"
 
 const colors = ["antiquewhite", "rgb(10,10,10,.85)"]
@@ -54,11 +55,35 @@ const EvaluationBar = ({evaluationObj, playerColor}) => {
 
     }, [playerColor, color, evaluation]);
 
-    useEffect(() => {
-        if (mate !== 0) {
-        better === "w" ? setVh(100) : setVh(0)
+    useEffectWhen(() => {
+        let vh;
+        if (mate > 0) {
+            if (mate % 2 === 1) {
+                if (color === "w") {
+                    setBetter('w')
+                    vh = 0
+                } else {
+                    setBetter('b')
+                    vh = 100
+                }
+            } else {
+                if (color === "b") {
+                    setBetter('w')
+                    vh = 100
+                } else {
+                    setBetter('w')
+                    vh = 0
+                }
+            }
         }
-    }, [mate, better])
+
+        if (playerColor === "black") {
+            vh = 100 - vh
+        }
+
+        setVh(vh)
+
+    }, [mate, playerColor])
 
     const displayEval = () => {
         if (mate !== 0) {

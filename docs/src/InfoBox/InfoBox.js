@@ -118,8 +118,24 @@ const InfoBox = ({changeOpponent, changePlayerColor}) => {
             </div>
 
             <div id="continuations">
-                <div id="continuations-title">
-                    <span>Annotated Continuations:</span><span id="move-legend"> <span id="good">⬤</span> good <span id="forced">⬤</span> forced <span id="unadviced">⬤</span> unadviced</span> <br />
+                <div id="continuations-title-and-legend">
+                    <span id="continuations-title">Annotated Continuations:</span>
+                        <span id="good">⬤ good 
+                            <div className="inner-text">
+                                Good moves are just that: good. 
+                            </div>
+                        </span>
+                        <span id="forced">  ⬤ forced 
+                            <div className="inner-text">
+                                Though few moves are truly forced upon a player, sometimes a single move is the only reasonable option, and therefore is "forced" in a sense. These moves have been highlighted to help you understand that it's only really necessary to study these moves if you're interested in why these moves are better or why others are worse.
+                            </div>
+                        </span>
+                        <span id="bad">  ⬤ not recommended
+                            <div className="inner-text">
+                                Occasionaly we'll specifically discourage a popular move due to either a better move being available, or the resulting complications being tough for beginners to understand.
+                            </div>
+                        </span>
+                    <br />
                 </div>
                 {annotatedMoves()}
             </div>

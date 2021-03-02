@@ -108,7 +108,10 @@ const Chessboard = () => {
         })
     }
     if (mate) {
-      setEvaluation({...evaluation, mate: mate[0]})
+      setEvaluation(
+        {...evaluation,
+          color: color, 
+          mate: mate[0]})
     }
   }
 

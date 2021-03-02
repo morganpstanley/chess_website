@@ -92,11 +92,15 @@ button.annotated-move.normal:hover {
     margin: 10px;
 }
 
-#continuations-title {
+#continuations-title-and-legend {
     width: 500px;
     position: absolute;
     bottom: 50px;
+}
+
+#continuations-title {
     font-style: italic;
+    margin-right: 20px;
 }
 
 button#undo-button {
@@ -162,6 +166,65 @@ span#good {
     color: seagreen;
 }
 
-span#unadviced {
+span#bad {
     color: #FF636E;
+}
+
+#move-legend {
+    width: 400px;
+}
+
+.inner-text {
+    display: none;
+}
+
+#forced:hover .inner-text, #good:hover .inner-text, #bad:hover .inner-text {
+    display: block;
+    position: absolute;
+    font-family: sans-serif;
+    line-height: 24px;
+    width: 300px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    color: #000;
+    bottom: 30px;
+}
+
+#forced:hover .inner-text {
+    right: -110px;
+}
+
+#good:hover .inner-text {
+    right: -45px;
+}
+
+#bad:hover .inner-text {
+    right: -185px;
+}
+
+.inner-text:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 24px solid white;
+    border-right: 12px solid transparent;
+    border-top: 12px solid white;
+    border-bottom: 20px solid transparent;
+    left: 10px;
+    bottom: -10px;
+}
+
+#bad .inner-text:after {
+    left: 280px;
+    border-left: 12px solid transparent;
+    border-right: 24px solid white;
+    border-top: 12px solid white;
+    border-bottom: 20px solid transparent;
+}
+
+#bad .inner-text {
+    left: 90px;
 }
