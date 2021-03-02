@@ -119,9 +119,10 @@ button#undo-button:hover {
 }
 
 @media only screen and (max-width: 900px) {
-    /* body {
-        overflow: visible;
-    } */
+    body {
+        overflow: inherit;
+    }
+
     #infobox {
         height: 38vw;
         width: 80vw;
