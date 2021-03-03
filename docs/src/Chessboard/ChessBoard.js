@@ -94,11 +94,12 @@ const Chessboard = () => {
   }
 
   const handleMessage = (event, color) => {
-    let evaluation = event.data.match(/(?<=cp )(-?\d*)/);
-    let mate = event.data.match(/(?<=mate )(-?\d*)/);
-    let currDepth = event.data.match(/(?<=depth )(-?\d*)/);
-    if (currDepth !== null && currDepth[0] !== depth ) {
-      setDepth(currDepth[0])
+    console.log(event)
+    let evaluation = event.data.match(/(?:cp )(-?\d*)/);
+    let mate = event.data.match(/(?:mate )(-?\d*)/);
+    let currDepth = event.data.match(/(?:depth )(-?\d*)/);
+    if (currDepth?.[1] && currDepth[1] !== depth ) {
+      setDepth(currDepth[1])
     }
     if (evaluation != null && chess.turn() === color) {
       setEvaluation(
@@ -107,11 +108,11 @@ const Chessboard = () => {
           mate: 0
         })
     }
-    if (mate) {
+    if (mate?.[1]) {
       setEvaluation(
         {...evaluation,
           color: color, 
-          mate: mate[0]})
+          mate: mate[1]})
     }
   }
 
