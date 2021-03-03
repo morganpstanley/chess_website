@@ -10,7 +10,6 @@
 }
 
 #position{
-    /* text-align: center; */
     font-size: 1rem;
     font-weight: 600;
     padding: 10px;
@@ -93,7 +92,7 @@ button.annotated-move.normal:hover {
 }
 
 #continuations-title-and-legend {
-    width: 500px;
+    width: 600px;
     position: absolute;
     bottom: 50px;
 }
@@ -155,10 +154,6 @@ button#undo-button:hover {
     }
 }
 
-#move-legend {
-    font-style: normal;
-}
-
 span#forced {
     color: cornflowerblue;
 }
@@ -169,10 +164,6 @@ span#good {
 
 span#bad {
     color: #FF636E;
-}
-
-#move-legend {
-    width: 400px;
 }
 
 .inner-text {
@@ -190,19 +181,19 @@ span#bad {
     padding: 15px;
     text-align: center;
     color: #000;
-    bottom: 30px;
+    bottom: 40px;
 }
 
 #forced:hover .inner-text {
-    right: -110px;
+    right: -10px;
 }
 
 #good:hover .inner-text {
-    right: -45px;
+    right: 45px;
 }
 
 #bad:hover .inner-text {
-    right: -185px;
+    right: -15px;
 }
 
 .inner-text:after {
@@ -215,7 +206,7 @@ span#bad {
     border-top: 12px solid white;
     border-bottom: 20px solid transparent;
     left: 10px;
-    bottom: -10px;
+    bottom: -15px;
 }
 
 #bad .inner-text:after {
