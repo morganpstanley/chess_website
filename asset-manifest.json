@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "./static/css/main.0b730253.chunk.css",
+    "main.css": "./static/css/main.32eb3657.chunk.css",
     "main.js": "./static/js/main.3beec08a.chunk.js",
     "main.js.map": "./static/js/main.3beec08a.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.540c9a89.js",
@@ -12,7 +12,7 @@
     "static/js/3.f01599f9.chunk.js.map": "./static/js/3.f01599f9.chunk.js.map",
     "index.html": "./index.html",
     "static/css/2.c948b661.chunk.css.map": "./static/css/2.c948b661.chunk.css.map",
-    "static/css/main.0b730253.chunk.css.map": "./static/css/main.0b730253.chunk.css.map",
+    "static/css/main.32eb3657.chunk.css.map": "./static/css/main.32eb3657.chunk.css.map",
     "static/js/2.3b29f254.chunk.js.LICENSE.txt": "./static/js/2.3b29f254.chunk.js.LICENSE.txt",
     "static/media/chessground.css": "./static/media/wR.ad69d2b3.svg",
     "static/media/bB.9ce7c272.svg": "./static/media/bB.9ce7c272.svg",
@@ -26,7 +26,7 @@
     "static/js/runtime-main.540c9a89.js",
     "static/css/2.c948b661.chunk.css",
     "static/js/2.3b29f254.chunk.js",
-    "static/css/main.0b730253.chunk.css",
+    "static/css/main.32eb3657.chunk.css",
     "static/js/main.3beec08a.chunk.js"
   ]
 }
