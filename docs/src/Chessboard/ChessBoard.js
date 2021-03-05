@@ -44,7 +44,7 @@ const Chessboard = () => {
   }
 
   useEffectWhen(() => {
-    let level = computerLevel === 1 ? 0 : (computerLevel - 1) * 5
+    let level = (computerLevel - 1) * 5
     stockfishPlayer.postMessage(`setoption name Skill Level value ${level}`)
   }, [computerLevel])
 
@@ -93,24 +93,24 @@ const Chessboard = () => {
   }
 
   const handleMessage = (event, color) => {
-    let evaluation = event.data.match(/(?:cp )(-?\d*)/);
-    let mate = event.data.match(/(?:mate )(-?\d*)/);
-    let currDepth = event.data.match(/(?:depth )(-?\d*)/);
-    if (currDepth?.[1] && currDepth[1] !== depth ) {
-      setDepth(currDepth[1])
+    let evaluation = event.data.match(/(?:cp )(-?\d*)/)?.[1] / 100;
+    let mate = event.data.match(/(?:mate )(-?\d*)/)?.[1];
+    let curDepth = event.data.match(/(?:depth )(-?\d*)/)?.[1];
+    if (curDepth && curDepth !== depth ) {
+      setDepth(curDepth)
     }
-    if (evaluation != null && chess.turn() === color) {
+    if (evaluation && chess.turn() === color) {
       setEvaluation(
-        {evaluation: evaluation[1] / 100, 
+        {evaluation: evaluation, 
           color: color,
           mate: 0
         })
     }
-    if (mate?.[1]) {
+    if (mate) {
       setEvaluation(
         {...evaluation,
           color: color, 
-          mate: mate[1]})
+          mate: mate})
     }
   }
 
