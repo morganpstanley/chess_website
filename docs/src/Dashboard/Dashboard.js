@@ -8,21 +8,21 @@ import "./Dashboard.css"
 
 const Dashboard = () => {
 
-  const chess = useSelector(state => state.game)
+	const chess = useSelector(state => state.game)
 
-  return (
-    <div id ="dashboard">
+	return (
+		<div id="dashboard">
 
-    <Chessboard />
+			<Chessboard />
 
-    <InfoBox 
-      chess={chess}
-      fen={chess.fen()} 
-      pgn={chess.pgn()}
-    />
+			<InfoBox
+				chess={chess}
+				fen={chess.fen()}
+				pgn={chess.pgn()}
+			/>
 
-    </div>
-  );
+		</div>
+	);
 }
 
 export default Dashboard

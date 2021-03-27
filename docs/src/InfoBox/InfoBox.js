@@ -29,9 +29,7 @@ const InfoBox = ({changeOpponent, changePlayerColor}) => {
     }
 
     useEffect(() => {
-        let fenArray = fen.split(' ')
-        let fenAgain = fenArray[0] + " " + fenArray[1] + " " + fenArray[2]
-        let position = json.find(opening => opening.fen === fenAgain)
+        let position = json.find(opening => opening.fen.includes(fen))
 
         if (position && position.name !== position) {
             setOpening(position.name)
@@ -43,7 +41,7 @@ const InfoBox = ({changeOpponent, changePlayerColor}) => {
         } else if (position === undefined && comment !== "") {
             setComment("")
         }
-    }, [fen, opening, eco, comment, annotated]);
+    }, [fen, comment]);
 
     useEffect(() => {
         const turn = chess.turn() === "w" ? 2 : 1
@@ -54,8 +52,8 @@ const InfoBox = ({changeOpponent, changePlayerColor}) => {
             if (pgnLength === 1) {pgnLength = 0} // splitting an empty string by " " returns an empty array with a length of 1...
 
             return opening.moves.includes(pgn)
-            && openingsLength - pgnLength === turn
-            && opening.comment
+                && openingsLength - pgnLength === turn
+                && opening.comment
         }))
     }, [chess, pgn])
     

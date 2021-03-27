@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 import Chessground from 'react-chessground'
 import EvaluationBar from '../EvaluationBar/EvaluationBar';
@@ -15,171 +15,174 @@ const stockfishBlack = new Worker('/stockfish.js')
 
 const Chessboard = () => {
 
-  const [pendingMove, setPendingMove] = useState()
-  const [lastMove, setLastMove] = useState()
-  const [evaluation, setEvaluation] = useState({evaluation: 0.2, color: "w", mate: 0})
-  const [depth, setDepth] = useState(0)
-  const [showModal, setShowModal] = useState(false)
+    const [pendingMove, setPendingMove] = useState()
+    const [lastMove, setLastMove] = useState()
+    const [evaluation, setEvaluation] = useState({ evaluation: 0.2, color: "w", mate: 0 })
+    const [depth, setDepth] = useState(0)
+    const [showModal, setShowModal] = useState(false)
 
-  const computerOpponent = useSelector(state => state.computerOpponent)
-  const playerColor = useSelector(state => state.userColor)
-  const chess = useSelector(state => state.game)
-  const fen = useSelector(state => state.fen)
-  const computerLevel = useSelector(state => state.difficulty)
-  const dispatch = useDispatch()
+    const computerOpponent = useSelector(state => state.computerOpponent)
+    const playerColor = useSelector(state => state.userColor)
+    const chess = useSelector(state => state.game)
+    const fen = useSelector(state => state.fen)
+    const computerLevel = useSelector(state => state.difficulty)
+    const dispatch = useDispatch()
 
-  const onMove = (from, to) => {
-    const moves = chess.moves({ verbose: true })
+    const onMove = (from, to) => {
+        const moves = chess.moves({ verbose: true })
 
-    //check if move is pawn promotion
-    for (let i = 0, len = moves.length; i < len; i++) { /* eslint-disable-line */
-      if (moves[i].flags.indexOf("p") !== -1 && moves[i].from === from) {
-        setPendingMove([from, to])
-        setShowModal(true)
-        return
-      }
+        //check if move is pawn promotion
+        for (let i = 0, len = moves.length; i < len; i++) { /* eslint-disable-line */
+            if (moves[i].flags.indexOf("p") !== -1 && moves[i].from === from) {
+                setPendingMove([from, to])
+                setShowModal(true)
+                return
+            }
+        }
+
+        move(from, to)
     }
 
-    move(from, to)
-  }
+    useEffectWhen(() => {
+        let level = (computerLevel - 1) * 5
+        stockfishPlayer.postMessage(`setoption name Skill Level value ${level}`)
+    }, [computerLevel])
 
-  useEffectWhen(() => {
-    let level = (computerLevel - 1) * 5
-    stockfishPlayer.postMessage(`setoption name Skill Level value ${level}`)
-  }, [computerLevel])
-
-  const stockfishMove = () => {
-    if (showModal === true) setShowModal(false);
-    stockfishPlayer.postMessage(`position fen ${chess.fen()}`)
-    stockfishPlayer.postMessage('go depth 15')
-  }
-
-  const stockfishAnalyze = () => {
-    if (chess.turn() === "w") {
-      stockfishBlack.postMessage('stop')
-      stockfishWhite.postMessage(`position fen ${chess.fen()}`)
-      stockfishWhite.postMessage('go depth 23')
-    } else {
-      stockfishWhite.postMessage('stop')
-      stockfishBlack.postMessage(`position fen ${chess.fen()}`)
-      stockfishBlack.postMessage('go depth 23')
+    const stockfishMove = () => {
+        if (showModal === true) setShowModal(false);
+        stockfishPlayer.postMessage(`position fen ${chess.fen()}`)
+        stockfishPlayer.postMessage('go depth 15')
     }
-  }
 
-  stockfishPlayer.onmessage = (event) => { 
-    let bestMove = event.data.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/);
-
-    if (bestMove) {
-      move(bestMove[1], bestMove[2]);
+    const stockfishAnalyze = () => {
+        if (chess.turn() === "w") {
+            stockfishBlack.postMessage('stop')
+            stockfishWhite.postMessage(`position fen ${chess.fen()}`)
+            stockfishWhite.postMessage('go depth 23')
+        } else {
+            stockfishWhite.postMessage('stop')
+            stockfishBlack.postMessage(`position fen ${chess.fen()}`)
+            stockfishBlack.postMessage('go depth 23')
+        }
     }
-  }
 
-  const move = (from, to) => {
-    chess.move({from, to});
-    dispatch({type: "UPDATE_GAME", game: chess, fen: chess.fen(), pgn: chess.pgn()})
-    setLastMove([from, to]);
-  }
+    stockfishPlayer.onmessage = (event) => {
+        let bestMove = event.data.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbn])?/);
 
-  useEffectWhen(() => {
-    stockfishAnalyze()
-  }, [fen])
-
-  stockfishWhite.onmessage = (event) => {
-   handleMessage(event, "w")
-  }
-
-  stockfishBlack.onmessage = (event) => {
-   handleMessage(event, "b")
-  }
-
-  const handleMessage = (event, color) => {
-    let evaluation = event.data.match(/(?:cp )(-?\d*)/)?.[1] / 100;
-    let mate = event.data.match(/(?:mate )(-?\d*)/)?.[1];
-    let curDepth = event.data.match(/(?:depth )(-?\d*)/)?.[1];
-    if (curDepth && curDepth !== depth ) {
-      setDepth(curDepth)
+        if (bestMove) {
+            move(bestMove[1], bestMove[2]);
+        }
     }
-    if (evaluation && chess.turn() === color) {
-      setEvaluation(
-        {evaluation: evaluation, 
-          color: color,
-          mate: 0
+
+    const move = (from, to) => {
+        chess.move({ from, to });
+        dispatch({ type: "UPDATE_GAME", game: chess, fen: chess.fen(), pgn: chess.pgn() })
+        setLastMove([from, to]);
+    }
+
+    useEffectWhen(() => {
+        stockfishAnalyze()
+    }, [fen])
+
+    stockfishWhite.onmessage = (event) => {
+        handleMessage(event, "w")
+    }
+
+    stockfishBlack.onmessage = (event) => {
+        handleMessage(event, "b")
+    }
+
+    const handleMessage = (event, color) => {
+        let evaluation = event.data.match(/(?:cp )(-?\d*)/)?.[1] / 100;
+        let mate = event.data.match(/(?:mate )(-?\d*)/)?.[1];
+        let curDepth = event.data.match(/(?:depth )(-?\d*)/)?.[1];
+        if (curDepth && curDepth !== depth) {
+            setDepth(curDepth)
+        }
+        if (evaluation && chess.turn() === color) {
+            setEvaluation(
+                {
+                    evaluation: evaluation,
+                    color: color,
+                    mate: 0
+                })
+        }
+        if (mate) {
+            setEvaluation(
+                {
+                    ...evaluation,
+                    color: color,
+                    mate: mate
+                })
+        }
+    }
+
+    const promotion = e => {
+        const from = pendingMove[0]
+        const to = pendingMove[1]
+        chess.move({ from, to, promotion: e })
+        setLastMove([from, to])
+        setShowModal(false)
+    }
+
+    const turnColor = () => {
+        return chess.turn() === "w" ? "white" : "black"
+    }
+
+    const calcMovable = () => {
+        const dests = new Map()
+        chess.SQUARES.forEach(s => {
+            const ms = chess.moves({ square: s, verbose: true })
+            if (ms.length) dests.set(s, ms.map(m => m.to))
         })
+        return {
+            free: false,
+            dests,
+            color: turnColor()
+        }
     }
-    if (mate) {
-      setEvaluation(
-        {...evaluation,
-          color: color, 
-          mate: mate})
+
+    useEffectWhen(() => {
+        if (chess.game_over()) {
+            setTimeout(onGameOver, 500)
+        }
+    }, [chess.game_over()])
+
+    const onGameOver = () => {
+        alert('Game over, bro.')
     }
-  }
 
-  const promotion = e => {
-    const from = pendingMove[0]
-    const to = pendingMove[1]
-    chess.move({ from, to, promotion: e })
-    setLastMove([from, to])
-    setShowModal(false)
-  }
+    useEffectWhen(() => {
+        if (turnColor() !== playerColor && computerOpponent) {
+            stockfishMove()
+        }
+    }, [lastMove, computerOpponent, playerColor])
 
-  const turnColor = () => {
-    return chess.turn() === "w" ? "white" : "black"
-  }
+    return (
+        <div id="chessboard">
+            <EvaluationBar playerColor={playerColor} evaluationObj={evaluation} />
 
-  const calcMovable = () => {
-    const dests = new Map()
-    chess.SQUARES.forEach(s => {
-      const ms = chess.moves({ square: s, verbose: true })
-      if (ms.length) dests.set(s, ms.map(m => m.to))
-    })
-    return {
-      free: false,
-      dests,
-      color: turnColor()
-    }
-  }
+            <Chessground
+                orientation={playerColor}
+                turnColor={turnColor()}
+                movable={calcMovable()}
+                lastMove={lastMove}
+                fen={chess.fen()}
+                onMove={onMove}
+                animation={{ duration: 300 }}
+            />
 
-useEffectWhen (() => {
-  if (chess.game_over()) {
-    setTimeout(onGameOver, 500)
-  }
-}, [chess.game_over()])
+            <div id="depth">
+                <span id="depth-title">DEPTH</span>
+                <br />
+                <span id="depth-num">{depth}</span>
+            </div>
 
-const onGameOver = () => {
-  alert('Game over, bro.')
-}
+            <CaptureArea fen={chess.fen()} />
 
-useEffectWhen(() => {
-  if (turnColor() !== playerColor && computerOpponent) {
-    stockfishMove()
-  }
-}, [lastMove, computerOpponent, playerColor])
-
-  return (
-      <div id="chessboard">
-        <EvaluationBar playerColor={playerColor} evaluationObj={evaluation}/>
-
-        <Chessground
-          orientation={playerColor}
-          turnColor={turnColor()}
-          movable={calcMovable()}
-          lastMove={lastMove}
-          fen={chess.fen()}
-          onMove={onMove}
-          animation={{duration: 300}}
-        />
-
-        <div id="depth">
-          <span id="depth-title">DEPTH</span> 
-          <br />
-          <span id="depth-num">{depth}</span>
+            <PromotionPrompt promotion={promotion} showModal={showModal} />
         </div>
-
-        <CaptureArea fen={chess.fen()}/>
-
-        <PromotionPrompt promotion={promotion} showModal={showModal}/>
-      </div>
-  );
+    );
 }
 
 export default Chessboard
